@@ -26,6 +26,9 @@ import java.util.Map;
  * 
  * @author krachama
  */
+/**
+ * Created by Ramesh.eerla on 24/10/2018.
+ */
 public class CustomTextView extends android.support.v7.widget.AppCompatTextView implements Justify.Justified{
 	
     private final String TAG = "SmartTrackTextView";

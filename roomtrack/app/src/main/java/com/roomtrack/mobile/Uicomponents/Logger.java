@@ -10,6 +10,9 @@ import android.util.Log;
  * @author krachama
  * 
  */
+/**
+ * Created by Ramesh.eerla on 24/10/2018.
+ */
 public class Logger {
 
     public static final String TAG = "OpenNativeApp";

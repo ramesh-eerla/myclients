@@ -15,7 +15,9 @@
  */
 
 package com.roomtrack.mobile.Uicomponents;
-
+/**
+ * Created by Ramesh.eerla on 24/10/2018.
+ */
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.Spanned;

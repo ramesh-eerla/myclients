@@ -14,9 +14,8 @@ import com.dcrworkforce.mobile.utils.Constants;
 import java.util.Map;
 
 /**
- * Created by ramesh.eerla on 1/13/2017.
+ * Created by Ramesh.eerla on 24/10/2018.
  */
-
 public class ST_Snackbar {
 
     public Snackbar snackbar;

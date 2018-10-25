@@ -24,7 +24,7 @@ import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
 
 
 /**
- * Created by ramesh.eerla on 1/21/2016.
+ * Created by Ramesh.eerla on 24/10/2018.
  */
 public abstract class SuperActivity extends AppCompatActivity {
     RelativeLayout content_layout;

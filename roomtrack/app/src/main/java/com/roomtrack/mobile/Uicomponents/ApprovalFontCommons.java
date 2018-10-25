@@ -1,5 +1,7 @@
 package com.roomtrack.mobile.Uicomponents;
-
+/**
+ * Created by Ramesh.eerla on 24/10/2018.
+ */
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Typeface;

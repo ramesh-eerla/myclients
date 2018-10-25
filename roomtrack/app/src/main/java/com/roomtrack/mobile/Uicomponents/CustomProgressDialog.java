@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import com.dcrworkforce.mobile.R;
 
 /**
- * Created by ramesh.eerla on 3/21/2016.
+ * Created by Ramesh.eerla on 24/10/2018.
  */
 public class CustomProgressDialog {
 

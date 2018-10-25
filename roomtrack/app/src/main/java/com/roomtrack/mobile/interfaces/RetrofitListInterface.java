@@ -6,9 +6,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
-
 /**
- * Created by sravan.chatla on 1/12/2018.
+ * Created by Ramesh.eerla on 24/10/2018.
  */
 
 public abstract class RetrofitListInterface {

@@ -11,7 +11,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 /**
- * Created by santosh.baratam on 11/13/2017.
+ * Created by Ramesh.eerla on 24/10/2018.
  */
 
 public abstract class RetrofitInterface {
