@@ -9,17 +9,6 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonRequest;
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.STinterface.ResponceCallback;
-import com.dcrworkforce.mobile.STinterface.RetrofitInterface;
-import com.dcrworkforce.mobile.controller.AppController;
-import com.dcrworkforce.mobile.dataset.Commanvariables;
-import com.dcrworkforce.mobile.requestandresponce.Commons;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-import com.dcrworkforce.mobile.screenhelpers.CommonRequestJSONObjects;
-import com.dcrworkforce.mobile.screenhelpers.TimeSheetScreenHelper;
-import com.dcrworkforce.mobile.utils.ExtendedDataHolder;
-import com.dcrworkforce.mobile.utils.VolleyErrorHelper;
 
 import org.json.JSONObject;
 

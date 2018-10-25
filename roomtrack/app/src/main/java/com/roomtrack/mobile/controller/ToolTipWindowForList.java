@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.dcrworkforce.mobile.R;
 
 public class ToolTipWindowForList {
 

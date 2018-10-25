@@ -9,8 +9,6 @@ import android.text.Html;
 import android.text.Spanned;
 import android.util.DisplayMetrics;
 
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.utils.Constants;
 
 public class ApprovalFontCommons {
 

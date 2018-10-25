@@ -15,14 +15,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.activity.ToDolistPage;
-import com.dcrworkforce.mobile.backgroundtasks.AlertDialogforLogout;
-import com.dcrworkforce.mobile.dataset.Commanvariables;
-import com.dcrworkforce.mobile.requestandresponce.Commons;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-
-
 /**
  * Created by Ramesh.eerla on 24/10/2018.
  */
@@ -32,7 +24,6 @@ public abstract class SuperActivity extends AppCompatActivity {
     ListView listView;
     Toolbar toolbar;
     ImageButton mTo_DO_List;
-    AlertDialogforLogout alertDialogforLogout;
 
 
     @Override
@@ -41,10 +32,9 @@ public abstract class SuperActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.super_mainlayout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        alertDialogforLogout = new AlertDialogforLogout(this);
-        Commons.superActivity_title = (SmartTrackTextView) toolbar.findViewById(R.id.smart_title);
-        Commons.superActivity_details_title = (SmartTrackTextView) toolbar.findViewById(R.id.details_title);
-        Commons.superActivity_details_sub_title = (SmartTrackTextView) toolbar.findViewById(R.id.details_subtitle);
+        Commons.superActivity_title = (CustomTextView) toolbar.findViewById(R.id.smart_title);
+        Commons.superActivity_details_title = (CustomTextView) toolbar.findViewById(R.id.details_title);
+        Commons.superActivity_details_sub_title = (CustomTextView) toolbar.findViewById(R.id.details_subtitle);
         Commons.superActivity_toolbar = toolbar;
         setSupportActionBar(toolbar);
         Commanvariables.commonHelper = new CommonHelper();
@@ -55,8 +45,8 @@ public abstract class SuperActivity extends AppCompatActivity {
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        Commanvariables.title_app = (SmartTrackTextView) headerView.findViewById(R.id.title_app);
-        Commanvariables.User_fullname = (SmartTrackTextView) headerView.findViewById(R.id.user_id_slider);
+        Commanvariables.title_app = (CustomTextView) headerView.findViewById(R.id.title_app);
+        Commanvariables.User_fullname = (CustomTextView) headerView.findViewById(R.id.user_id_slider);
         listView = (ListView) findViewById(R.id.client_list);
         Commanvariables.slide_listview = listView;
         Commons.superActivity_drawer = drawer;

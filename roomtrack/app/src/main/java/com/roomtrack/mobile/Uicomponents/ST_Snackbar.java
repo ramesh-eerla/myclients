@@ -7,9 +7,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-import com.dcrworkforce.mobile.utils.Constants;
 
 import java.util.Map;
 

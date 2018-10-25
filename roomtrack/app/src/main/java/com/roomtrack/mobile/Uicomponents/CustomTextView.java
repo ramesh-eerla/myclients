@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
   * <p>
- * This View is the base to inherit custom SmartTrackTextView. Contains common
+ * This View is the base to inherit custom CustomTextView. Contains common
  * methods across the application.
  * </p>
  * 
@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class CustomTextView extends android.support.v7.widget.AppCompatTextView implements Justify.Justified{
 	
-    private final String TAG = "SmartTrackTextView";
+    private final String TAG = "CustomTextView";
     private final String ellipsizeTxt = "...";
     
 	private Context mCntxt;

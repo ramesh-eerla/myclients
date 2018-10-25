@@ -1,8 +1,5 @@
 package com.roomtrack.mobile.interfaces;
 
-
-import com.dcrworkforce.mobile.model.MspClientModel;
-
 import java.util.ArrayList;
 
 /**

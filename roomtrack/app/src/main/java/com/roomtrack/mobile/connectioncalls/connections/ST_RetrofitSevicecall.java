@@ -3,16 +3,6 @@ package com.roomtrack.mobile.connectioncalls.connections;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.STinterface.ResponceCallback;
-import com.dcrworkforce.mobile.connectioncalls.datasets.DeleteResumeDataset;
-import com.dcrworkforce.mobile.connectioncalls.datasets.ResumeAndDocumentUploadDataSet;
-import com.dcrworkforce.mobile.connectioncalls.interfaces.STRequestInterface;
-import com.dcrworkforce.mobile.controller.AppController;
-import com.dcrworkforce.mobile.requestandresponce.RequestParams;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-import com.dcrworkforce.mobile.utils.Constants;
-
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 

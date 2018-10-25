@@ -1,7 +1,5 @@
 package com.roomtrack.mobile.interfaces;
 
-import com.dcrworkforce.mobile.model.DropdownReasons;
-import com.dcrworkforce.mobile.model.KeyValueModel;
 import java.util.List;
 
 import retrofit2.Call;

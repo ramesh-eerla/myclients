@@ -27,32 +27,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.STinterface.ResponceCallback;
-import com.dcrworkforce.mobile.Uicomponents.SmartTrackProgressDialog;
-import com.dcrworkforce.mobile.activity.LandingPagewithAutologin;
-import com.dcrworkforce.mobile.activity.NewLoginActivity;
-import com.dcrworkforce.mobile.connectioncalls.datasets.AccessToakenSet;
-import com.dcrworkforce.mobile.connectioncalls.interfaces.STRequestInterface;
-import com.dcrworkforce.mobile.dataset.CreatrequirementObjects;
-import com.dcrworkforce.mobile.fragments.SupplierLandingFragment;
-import com.dcrworkforce.mobile.notifications.Config;
-import com.dcrworkforce.mobile.requestandresponce.Commons;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-import com.dcrworkforce.mobile.threads.Timer;
-import com.dcrworkforce.mobile.utils.MapUtils;
-import com.google.android.gcm.GCMRegistrar;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.apache.velocity.runtime.resource.Resource;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -498,8 +472,8 @@ public class AppController extends Application {
         scope = getOuathScope(object);
         STRequestInterface myApiService = AppController.getAccessToken(Commons.app_type);
         Call<AccessToakenSet> myService = null;
-        myService = myApiService.getAccessToaken("token", clientId, "client_credentials", "smarttrack://oauth", secretCode, scope);
-        /*myService=myApiService.getAccessToaken("token","b44bcb7d3de44f3a81025c8e09ca5165","client_credentials","smarttrack://oauth","secret");*/
+        myService = myApiService.getAccessToaken("token", clientId, "client_credentials", "Custom://oauth", secretCode, scope);
+        /*myService=myApiService.getAccessToaken("token","b44bcb7d3de44f3a81025c8e09ca5165","client_credentials","Custom://oauth","secret");*/
         final ProgressDialog finalDialog = dialog;
         myService.enqueue(new Callback<AccessToakenSet>() {
 

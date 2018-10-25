@@ -1,8 +1,5 @@
 package com.roomtrack.mobile.interfaces;
 
-import com.dcrworkforce.mobile.actions.OfferToHireAction;
-import com.dcrworkforce.mobile.model.AcceptOfferModel;
-import com.dcrworkforce.mobile.model.RetrofitResponse;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;

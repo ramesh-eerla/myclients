@@ -7,8 +7,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.dcrworkforce.mobile.R;
-
 /**
  * Created by Ramesh.eerla on 24/10/2018.
  */

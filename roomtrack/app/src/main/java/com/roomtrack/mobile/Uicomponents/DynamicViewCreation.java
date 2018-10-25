@@ -37,30 +37,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dcrworkforce.mobile.R;
-import com.dcrworkforce.mobile.STinterface.GetDateModelListener;
-import com.dcrworkforce.mobile.STinterface.RetrofitListInterface;
-import com.dcrworkforce.mobile.activity.CreateRequirementPageNew;
-import com.dcrworkforce.mobile.adapters.AutocompleteCustomArrayAdapter;
-import com.dcrworkforce.mobile.connectioncalls.connections.ST_RequestService;
-import com.dcrworkforce.mobile.controller.ToolTipWindowForList;
-import com.dcrworkforce.mobile.dataset.CreateRquirementDynamicViewObjects;
-import com.dcrworkforce.mobile.model.BasicRequestParams;
-import com.dcrworkforce.mobile.model.DateTimeModel;
-import com.dcrworkforce.mobile.model.DropdownReasons;
-import com.dcrworkforce.mobile.model.KeyValueModel;
-import com.dcrworkforce.mobile.model.RetrofitResponse;
-import com.dcrworkforce.mobile.model.UiViewModel;
-import com.dcrworkforce.mobile.requestandresponce.Commons;
-import com.dcrworkforce.mobile.requestandresponce.GetDataByURL;
-import com.dcrworkforce.mobile.screenhelpers.CommonHelper;
-import com.dcrworkforce.mobile.utils.CommonUtils;
-import com.dcrworkforce.mobile.utils.Constants;
-import com.dcrworkforce.mobile.utils.DateTimePickerUtil;
-import com.dcrworkforce.mobile.utils.JSONUtils;
-import com.dcrworkforce.mobile.utils.PresetRadioGroup;
-import com.dcrworkforce.mobile.utils.PresetValueButton;
-import com.dcrworkforce.mobile.utils.RetrofitUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,12 +54,6 @@ import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Response;
-
-import static com.dcrworkforce.mobile.requestandresponce.Commons.startDate;
-import static com.dcrworkforce.mobile.utils.CommonUtils.dpToPx;
-import static com.dcrworkforce.mobile.utils.CommonUtils.hasOnlySelectInDropdownReasons;
-import static com.dcrworkforce.mobile.utils.CommonUtils.isStringInteger;
-import static com.dcrworkforce.mobile.utils.CommonUtils.stringContainsHTML;
 
 
 /**
@@ -106,7 +76,7 @@ public class DynamicViewCreation {
     public static HashMap<Integer, AutoCompleteTextView> autoCompleteTextViewHashMap = new HashMap<>();
     public static HashMap<Integer, String> autoCompleteTextvalue = new HashMap<>();
     public static HashMap<Integer, Button> buttonHashMap = new HashMap<>();
-    public static HashMap<Integer, SmartTrackEditText> editetextboxHashmap = new HashMap<>();
+    public static HashMap<Integer, CustomEditText> editetextboxHashmap = new HashMap<>();
     public static HashMap<String, LinearLayout> dualtextboxHashmap = new HashMap<>();
     public static DateTimeModel showDateModel;
     public static HashMap<Integer, AutoCompleteTextView> buttonAutoCompleteTextView = new HashMap<>();
@@ -122,7 +92,7 @@ public class DynamicViewCreation {
     public final static Calendar date = Calendar.getInstance();
     public static int endDateAutoCompleteId = 0;
     public static SimpleDateFormat dateFormatter;
-    public static SmartTrackEditText billrate_et1, billrate_et2, contractValue_ET, weekly_spend;
+    public static CustomEditText billrate_et1, billrate_et2, contractValue_ET, weekly_spend;
     public static CreateRequirementPageNew createRequirementPage;
     public static boolean shouldAutoComplete = true;
     public static ArrayAdapter<String> adapter;
@@ -452,7 +422,7 @@ public class DynamicViewCreation {
         assert vi != null;
         View view = vi.inflate(R.layout.view_spinner, null);
         final Spinner spinner = (Spinner) view.findViewById(R.id.currency_spin);
-        SmartTrackTextView tvTitle = (SmartTrackTextView) view.findViewById(R.id.currency_tv);
+        CustomTextView tvTitle = (CustomTextView) view.findViewById(R.id.currency_tv);
         tvTitle.setPadding(15, 10, 0, 0);
         tvTitle.setTextSize(context.getResources().getInteger(R.integer.labels_common_font));
         spinner.setPadding(10, 0, 0, 0);
@@ -1122,7 +1092,7 @@ public class DynamicViewCreation {
                 LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 assert vi != null;
                 view = vi.inflate(R.layout.view_textbox, null);
-                SmartTrackTextView label = (SmartTrackTextView) view.findViewById(R.id.contractTextView);
+                CustomTextView label = (CustomTextView) view.findViewById(R.id.contractTextView);
                 label.setTextSize(context.getResources().getInteger(R.integer.labels_common_font));
                 LinearLayout parentLayout = (LinearLayout) view.findViewById(R.id.totalContractValueHeader);
                 parentLayout.setPadding(12, 5, 0, 0);
@@ -1139,53 +1109,53 @@ public class DynamicViewCreation {
                             label.setText(name);
                     }
                 }
-                SmartTrackEditText smartTrackEditText = (SmartTrackEditText) view.findViewById(R.id.totalcontractvalue_edt);
-                smartTrackEditText.setPadding(5, 10, 0, 10);
-                smartTrackEditText.setTextSize(context.getResources().getInteger(R.integer.labels_common_font));
+                CustomEditText CustomEditText = (CustomEditText) view.findViewById(R.id.totalcontractvalue_edt);
+                CustomEditText.setPadding(5, 10, 0, 10);
+                CustomEditText.setTextSize(context.getResources().getInteger(R.integer.labels_common_font));
                 if (uiViewModel.disabled) {
-                    smartTrackEditText.setFocusable(false);
-                    smartTrackEditText.setFocusableInTouchMode(false);
-                    smartTrackEditText.setBackgroundResource(R.drawable.empty_cell_withoutborder);
+                    CustomEditText.setFocusable(false);
+                    CustomEditText.setFocusableInTouchMode(false);
+                    CustomEditText.setBackgroundResource(R.drawable.empty_cell_withoutborder);
                 }
 
                 if (uiViewModel.textType.equalsIgnoreCase(context.getString(R.string.pwd_text_type))) {
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 } else if (uiViewModel.key.equalsIgnoreCase("last4ssn")) {
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    smartTrackEditText = CommonUtils.setEditTextMaxLength(smartTrackEditText, 4);
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    CustomEditText = CommonUtils.setEditTextMaxLength(CustomEditText, 4);
                 } else if (uiViewModel.key.equalsIgnoreCase("CashAdvAmount")) {
-                    smartTrackEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
+                    CustomEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789.,"));
                 } else if (uiViewModel.key.equalsIgnoreCase("homephone") ||
                         uiViewModel.key.equalsIgnoreCase("emergencyContact1Phone") ||
                         uiViewModel.key.equalsIgnoreCase("emergencyContact2Phone")) {
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    smartTrackEditText = CommonUtils.setEditTextMaxLength(smartTrackEditText, context.getResources().getInteger(R.integer.phoneLength));
-                    CommonUtils.callEditTextTextFormatWatcher("***-***-****", smartTrackEditText, false);
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    CustomEditText = CommonUtils.setEditTextMaxLength(CustomEditText, context.getResources().getInteger(R.integer.phoneLength));
+                    CommonUtils.callEditTextTextFormatWatcher("***-***-****", CustomEditText, false);
                 } else if (uiViewModel.key.equalsIgnoreCase("email")) {
-                    smartTrackEditText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                    CustomEditText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
                 } else if (uiViewModel.key.equalsIgnoreCase("zip")) {
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    smartTrackEditText = CommonUtils.setEditTextMaxLength(smartTrackEditText, context.getResources().getInteger(R.integer.zipLength));
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    CustomEditText = CommonUtils.setEditTextMaxLength(CustomEditText, context.getResources().getInteger(R.integer.zipLength));
                 } else if (uiViewModel.key.equalsIgnoreCase("candidateSSN") || uiViewModel.key.equalsIgnoreCase("candidateSSNConfirm")) {
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    CommonUtils.callEditTextTextFormatWatcher(uiViewModel.maskedText, smartTrackEditText, true);
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    CommonUtils.callEditTextTextFormatWatcher(uiViewModel.maskedText, CustomEditText, true);
                 } else
-                    smartTrackEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+                    CustomEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 
                 if (uiViewModel.key != null && uiViewModel.key.equalsIgnoreCase("candidateSSNConfirm")) {
-                    smartTrackEditText.setTag(R.id.dependentUiObject,
+                    CustomEditText.setTag(R.id.dependentUiObject,
                             CommonUtils.getViewFromViewGroup(viewGroup, "candidateSSN", true));
                 }
                 if (uiViewModel.textLength != 0) {
-                    smartTrackEditText = CommonUtils.setEditTextMaxLength(smartTrackEditText, uiViewModel.textLength);
+                    CustomEditText = CommonUtils.setEditTextMaxLength(CustomEditText, uiViewModel.textLength);
                 }
-                smartTrackEditText.setTag(uiViewModel);
+                CustomEditText.setTag(uiViewModel);
 
                 if (uiViewModel.key != null)
                     parentLayout.setTag(uiViewModel);
 
                 if (uiViewModel.value != null) {
-                    smartTrackEditText.setText(uiViewModel.value);
+                    CustomEditText.setText(uiViewModel.value);
                 }
                 return view;
             } else {
@@ -1438,7 +1408,7 @@ public class DynamicViewCreation {
 
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = vi.inflate(R.layout.view_datepicker, null);
-        final SmartTrackTextView datePickerTextView = (SmartTrackTextView) view.findViewById(R.id.FieldStartDate_test);
+        final CustomTextView datePickerTextView = (CustomTextView) view.findViewById(R.id.FieldStartDate_test);
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.radioBtnsLayout);
         final AutoCompleteTextView datePickAutoCompleteTextView = (AutoCompleteTextView) view.findViewById(R.id.fieldStartTextView);
 
@@ -1563,8 +1533,8 @@ public class DynamicViewCreation {
         View view = null;
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = vi.inflate(R.layout.view_textbox, null);
-        SmartTrackTextView contractValue_tv = (SmartTrackTextView) view.findViewById(R.id.contractTextView);
-        final SmartTrackEditText contractValue_ET_ = (SmartTrackEditText) view.findViewById(R.id.totalcontractvalue_edt);
+        CustomTextView contractValue_tv = (CustomTextView) view.findViewById(R.id.contractTextView);
+        final CustomEditText contractValue_ET_ = (CustomEditText) view.findViewById(R.id.totalcontractvalue_edt);
         int randomNumber = randomGenerateMethod(800, 899);
         contractValue_ET_.setTag(randomNumber);
         editetextboxHashmap.put(randomNumber, contractValue_ET_);
@@ -1601,11 +1571,11 @@ public class DynamicViewCreation {
 */
 
                     if ((!hasFocus)) {
-                        SmartTrackEditText editext = contractValue_ET_;
+                        CustomEditText editext = contractValue_ET_;
                         for (CreateRquirementDynamicViewObjects objCRDView : dynamicViewObjectsArrayList) {
 
                             String key = objCRDView.getNameCR();
-                            SmartTrackEditText editText = contractValue_ET_;
+                            CustomEditText editText = contractValue_ET_;
                             int tag = (int) editText.getTag();
                             String payrate = editText.getText().toString().trim();
                             if (key.equalsIgnoreCase("lblPayRateText") && payrate.length() > 0) {
@@ -1640,7 +1610,7 @@ public class DynamicViewCreation {
     }
 
     public static void loadpayrate_dependencyedittext() {
-        SmartTrackEditText payrate = null, billrate = null, totalcontractvalu = null, weeklyspend = null;
+        CustomEditText payrate = null, billrate = null, totalcontractvalu = null, weeklyspend = null;
         for (CreateRquirementDynamicViewObjects objCRDView : dynamicViewObjectsArrayList) {
             String key = objCRDView.getNameCR();
             int tag = objCRDView.getTagValueCR();
@@ -1673,9 +1643,9 @@ public class DynamicViewCreation {
         viewCreated = true;
 
         LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.payrateHeader);
-        SmartTrackTextView valueTextView = (SmartTrackTextView) view.findViewById(R.id.payrate_tv1);
-        final SmartTrackEditText dual_billrate_et1 = (SmartTrackEditText) view.findViewById(R.id.billrate_edt1);
-        final SmartTrackEditText dual_billrate_et2 = (SmartTrackEditText) view.findViewById(R.id.billrate_edt2);
+        CustomTextView valueTextView = (CustomTextView) view.findViewById(R.id.payrate_tv1);
+        final CustomEditText dual_billrate_et1 = (CustomEditText) view.findViewById(R.id.billrate_edt1);
+        final CustomEditText dual_billrate_et2 = (CustomEditText) view.findViewById(R.id.billrate_edt2);
 
 
         //int randomNumber = randomGenerateMethod(900, 999);
@@ -1874,7 +1844,7 @@ public class DynamicViewCreation {
         LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = vi.inflate(R.layout.view_spinner, null);
         final Spinner currency_Spinner = (Spinner) view.findViewById(R.id.currency_spin);
-        SmartTrackTextView currencyTextView = (SmartTrackTextView) view.findViewById(R.id.currency_tv);
+        CustomTextView currencyTextView = (CustomTextView) view.findViewById(R.id.currency_tv);
         currencyTextView.setPadding(10, 0, 0, 0);
         currency_Spinner.setPadding(5, 10, 10, 10);
         JSONArray currencyValList;
@@ -2176,7 +2146,7 @@ public class DynamicViewCreation {
         }
     }
 
-    public static SmartTrackEditText getTotalEstimatevalue() {
+    public static CustomEditText getTotalEstimatevalue() {
         for (CreateRquirementDynamicViewObjects objCRDView : dynamicViewObjectsArrayList) {
             String key = objCRDView.getNameCR();
             int tag = objCRDView.getTagValueCR();
