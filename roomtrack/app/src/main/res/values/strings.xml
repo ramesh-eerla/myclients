@@ -6,4 +6,40 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="astrick">*</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="base_URL">http://qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api/</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email/Phonenumber</string>
+    <string name="prompt_password">Password </string>
+    <string name="forgetpassword">Forgot Password?</string>
+    <string name="register">Register an Account</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
+    </string>
+
+    <!-- Network Messages -->
+    <string name="nw_connection_timeout">Connection Timeout</string>
+    <string name="nw_unknownHost">UnknownHost</string>
+    <string name="nw_no_network">No Network</string>
+    <string name="nw_unAutharized">Unautharized user</string>
+    <string name="nw_internal_server">Internal Server Error</string>
+    <string name="nw_error">Network Error</string>
+    <string name="nw_data_invalid">Invalid data</string>
+    <string name="nw_data_invalid_response">Invalid Response</string>
+    <string name="nw_url_not_found">Url not found at Server</string>
+    <string name="generic_server_down" translatable="false">Server down</string>
+    <string name="generic_server_timeout" translatable="false">Server Timeout</string>
+    <string name="generic_error" translatable="false">No internet available</string>
+    <string name="no_internet" translatable="false">No internet</string>
+    <string name="parsing_failed" translatable="false">Parsing Failure</string>
+    <string name="auth_failed" translatable="false">Authentication Failure</string>
+
+
 </resources>
