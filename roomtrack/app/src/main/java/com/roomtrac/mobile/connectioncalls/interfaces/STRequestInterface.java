@@ -29,7 +29,7 @@ public interface STRequestInterface {
      * @Path("methodname") : webapi method name
      * @Body : parameters for the request
      */
-    @FormUrlEncoded
+
     @POST("{methodname}")
     Call<RetrofitResponse> user_Register(@Path("methodname") String methodname, @Body RequestParams.Register task );
 
@@ -37,7 +37,7 @@ public interface STRequestInterface {
     Call<LoginDataset> sso_login(@Path("version") String version, @Path("methodname") String methodname, @Body RequestParams.PersonalProfile task);
 
     @POST("{version}/{methodname}")
-    Call<LoginDataset> login(@Path("version") String version, @Path("methodname") String methodname, @Body RequestParams.LoginDetails task);
+    Call<LoginDataset> login(@Path("version") String version,  @Body RequestParams.LoginDetails task);
 
     @POST("{version}/{methodname}")
     Call<LoginDataset> reloaddata(@Path("version") String version, @Path("methodname") String methodname);

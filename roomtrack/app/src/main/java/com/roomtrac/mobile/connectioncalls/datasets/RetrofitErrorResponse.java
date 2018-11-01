@@ -7,14 +7,25 @@ import java.util.List;
 
 public class RetrofitErrorResponse {
     @Expose
-    @SerializedName("Message")
-    private String Message;
+    @SerializedName("message")
+    private String message;
+
+    @SerializedName("status")
+    private String status;
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     public String getMessage() {
-        return Message;
+        return message;
     }
 
     public void setMessage(String message) {
-        this.Message = message;
+        this.message = message;
     }
 }

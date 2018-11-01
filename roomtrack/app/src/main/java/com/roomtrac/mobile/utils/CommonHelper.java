@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.roomtrac.mobile.R;
+import com.roomtrac.mobile.Uicomponents.CustomProgressDialog;
 import com.roomtrac.mobile.activites.LoginActivity;
 
 import org.json.JSONArray;
@@ -140,16 +141,14 @@ public class CommonHelper {
     /*
      * To show the loading dialog on the screen
      */
-   /* public ProgressDialog showDialog(Context context) {
-               *//*  dialog = CustomProgressDialog.creater(context);
-                 dialog.show();*//*
-        dialog = new SmartTrackProgressDialog(context).showProgressDialog("Please Wait ..", "Loading ..");
+    public ProgressDialog showDialog(Context context) {
+        dialog = new CustomProgressDialog(context).showProgressDialog("Please Wait ..", "Loading ..");
         if (dialog != null)
             dialog.setCanceledOnTouchOutside(false);
 
 
         return dialog;
-    }*/
+    }
 
     public static AlertDialog setForceUpdateAlertDiaolog(final Context context, String title, String message) {
         /*AlertDialog alertDialog = new AlertDialog.Builder(context, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
@@ -358,11 +357,8 @@ public class CommonHelper {
                 @Override
                 public void run() {
 
-                    if (!title.equalsIgnoreCase("supplier") && !title.equalsIgnoreCase("Finish"))
-                        common_helper_obj.setErrorAlertDiaolog(context, title, (message != null) ? message : title);
-                    else {
-                        common_helper_obj.setErrorAlertDiaolog1(context, title, message);
-                    }
+                                            common_helper_obj.setErrorAlertDiaolog(context, title, (message != null) ? message : title);
+
                 }
             });
         } catch (Exception e) {

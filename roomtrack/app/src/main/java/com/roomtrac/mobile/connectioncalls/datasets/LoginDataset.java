@@ -3,591 +3,329 @@ package com.roomtrac.mobile.connectioncalls.datasets;
 /**
  * Created by Ramesh.eerla on 24/10/2018.
  */
-import java.io.Serializable;
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
+
+
+
+
+public class LoginDataset {
+    @SerializedName("member_id")
+    public String member_id;
+    @SerializedName("first_name")
+    public String first_name;
+    @SerializedName("last_name")
+    public String last_name;
+    @SerializedName("email")
+    public String email;
+    @SerializedName("password")
+    public String password;
+    @SerializedName("phone_no")
+    public String phone_no;
+    @SerializedName("dob_date")
+    public String dob_date;
+    @SerializedName("dob_month")
+    public String dob_month;
+    @SerializedName("dob_year")
+    public String dob_year;
+    @SerializedName("age")
+    public String age;
+    @SerializedName("marital_status")
+    public String marital_status;
+    @SerializedName("sex")
+    public String sex;
+    @SerializedName("home_town")
+    public String home_town;
+    @SerializedName("spoken_language")
+    public String spoken_language;
+    @SerializedName("address")
+    public String address;
+    @SerializedName("avatar")
+    public String avatar;
+    @SerializedName("old_stay_id")
+    public String old_stay_id;
+    @SerializedName("old_rent_id")
+    public String old_rent_id;
+    @SerializedName("old_hostel_id")
+    public String old_hostel_id;
+    @SerializedName("activate")
+    public String activate;
+    @SerializedName("last_login")
+    public String last_login;
+    @SerializedName("status")
+    public String status;
+    @SerializedName("flag")
+    public String flag;
+    @SerializedName("registration_expire")
+    public String registration_expire;
+    @SerializedName("profile_status")
+    public String profile_status;
+    @SerializedName("posted_on")
+    public String posted_on;
 
-
-public class LoginDataset implements Serializable{
-public class AlertsEntity implements Serializable{
-
-    private String ConfirmationAlert;
-    private String WarningAlert;
-    private String ErrorAlert;
-
-    public String getConfirmationAlert() {
-        return ConfirmationAlert;
-    }
-
-    public void setConfirmationAlert(String ConfirmationAlert) {
-        this.ConfirmationAlert = ConfirmationAlert;
-    }
-
-    public String getWarningAlert() {
-        return WarningAlert;
-    }
-
-    public void setWarningAlert(String WarningAlert) {
-        this.WarningAlert = WarningAlert;
-    }
-
-    public String getErrorAlert() {
-        return ErrorAlert;
-    }
-
-    public void setErrorAlert(String ErrorAlert) {
-        this.ErrorAlert = ErrorAlert;
-    }
-
-}
-
-
-    public class MspClientList implements Serializable{
-
-        private Integer _MspClientID;
-        private String _ClientName;
-        private Integer _ClientID;
-
-        public Integer getMspClientID() {
-            return _MspClientID;
-        }
-
-        public void setMspClientID(Integer _MspClientID) {
-            this._MspClientID = _MspClientID;
-        }
-
-        public String getClientName() {
-            return _ClientName;
-        }
-
-        public void setClientName(String _ClientName) {
-            this._ClientName = _ClientName;
-        }
-
-        public Integer getClientID() {
-            return _ClientID;
-        }
-
-        public void setClientID(Integer _ClientID) {
-            this._ClientID = _ClientID;
-        }
-
-    }
-
-    public class MspClientSupplierList implements Serializable{
-
-
-
-        private Integer _mspID;
-        private Integer _clientID;
-        private String _Name;
-        private Integer _MSPClientSupplierID;
-
-        public Integer getmspID() {
-            return _mspID;
-        }
-
-        public void setmspID(Integer _mspID) {
-            this._mspID = _mspID;
-        }
-
-        public Integer getclientID() {
-            return _clientID;
-        }
-
-        public void setclientID(Integer _clientID) {
-            this._clientID = _clientID;
-        }
-
-        public String getName() {
-            return _Name;
-        }
-
-        public void setName(String _Name) {
-            this._Name = _Name;
-        }
-
-        public Integer getMSPClientSupplierID() {
-            return _MSPClientSupplierID;
-        }
-
-        public void setMSPClientSupplierID(Integer _MSPClientSupplierID) {
-            this._MSPClientSupplierID = _MSPClientSupplierID;
-        }
-
-    }
-
-public class ClientMspList implements Serializable{
-
-    private Integer _MspClientID;
-    private String _MSPName;
-    private Integer _MSPID;
-
-    public Integer getMspClientID() {
-        return _MspClientID;
-    }
-
-    public void setMspClientID(Integer _MspClientID) {
-        this._MspClientID = _MspClientID;
-    }
-
-    public String getMSPName() {
-        return _MSPName;
-    }
-
-    public void setMSPName(String _MSPName) {
-        this._MSPName = _MSPName;
-    }
-
-    public Integer getMSPID() {
-        return _MSPID;
-    }
-
-    public void setMSPID(Integer _MSPID) {
-        this._MSPID = _MSPID;
-    }
-
-}
-public class CommonErrorMessages implements Serializable{
-
-    private String NoNetwork;
-    private String InvalidResponse;
-    private String ConnectionTimeout;
-    private String LoginErrorMsg1;
-    private String LoginErrorMsg2;
-    private String LoginErrorMsg3;
-    private String LoginErrorMsg4;
-    private String LoginErrorMsg5;
-    private String ToDoListValidationMessage;
-
-    public String getToDoListValidationMessage() {
-        return ToDoListValidationMessage;
-    }
-
-    public void setToDoListValidationMessage(String ToDoListValidationMessage) {
-        this.ToDoListValidationMessage = ToDoListValidationMessage;
-    }
-
-    public String getNoNetwork() {
-        return NoNetwork;
-    }
-
-    public void setNoNetwork(String NoNetwork) {
-        this.NoNetwork = NoNetwork;
-    }
-
-    public String getInvalidResponse() {
-        return InvalidResponse;
-    }
-
-    public void setInvalidResponse(String InvalidResponse) {
-        this.InvalidResponse = InvalidResponse;
-    }
-
-    public String getConnectionTimeout() {
-        return ConnectionTimeout;
-    }
-
-    public void setConnectionTimeout(String ConnectionTimeout) {
-        this.ConnectionTimeout = ConnectionTimeout;
-    }
-
-    public String getLoginErrorMsg1() {
-        return LoginErrorMsg1;
-    }
-
-    public void setLoginErrorMsg1(String LoginErrorMsg1) {
-        this.LoginErrorMsg1 = LoginErrorMsg1;
-    }
-
-    public String getLoginErrorMsg2() {
-        return LoginErrorMsg2;
-    }
-
-    public void setLoginErrorMsg2(String LoginErrorMsg2) {
-        this.LoginErrorMsg2 = LoginErrorMsg2;
-    }
-
-    public String getLoginErrorMsg3() {
-        return LoginErrorMsg3;
-    }
-
-    public void setLoginErrorMsg3(String LoginErrorMsg3) {
-        this.LoginErrorMsg3 = LoginErrorMsg3;
-    }
-
-    public String getLoginErrorMsg4() {
-        return LoginErrorMsg4;
-    }
-
-    public void setLoginErrorMsg4(String LoginErrorMsg4) {
-        this.LoginErrorMsg4 = LoginErrorMsg4;
-    }
-
-    public String getLoginErrorMsg5() {
-        return LoginErrorMsg5;
-    }
-
-    public void setLoginErrorMsg5(String LoginErrorMsg5) {
-        this.LoginErrorMsg5 = LoginErrorMsg5;
-    }
-
-}
-
-
-    private String SessionKey;
-    private Boolean Status;
-    private String Message;
-    private Integer Mspid;
-    private Integer ClientID;
-    private Integer SupplierId;
-    private Integer userID;
-    private Integer MspClientID;
-    private Integer MspClientSupplierID;
-    private String Fullname;
-    private String Title;
-    private String ClientName;
-    private String usertype;
-    private List<MspClientList> MspClientList;
-    private List<ClientMspList> ClientMspList = null;
-    private List<MspClientSupplierList> MspClientSupplierList = null;
-    private String CWID;
-    private String Loginurlmobile;
-    private String Loginurltablet;
-    private CommonErrorMessages CommonErrorMessages;
-    private AlertsEntity AlertsEntity;
-    private List<SettingsEntity> SettingsEntity = null;
-    private Integer proxyUserId;
-    private Integer DesktopUserId;
-    private Integer UserTypeId;
-    private List<MobieModuleList> MobieModuleList = null;
-    private String ScreenTitle;
-    /*for supplier we need to use old session key 
-     * Ramesh eerla
-     * */
-    private String OldSessionKey;
-    private String web_api_url;
-    private String WCF_url;
-
-    public void setOldSessionKey(String oldSessionKey) {
-        OldSessionKey = oldSessionKey;
-    }
-
-    public String getOldSessionKey() {
-        return OldSessionKey;
-    }
-
-    public String getWeb_api_url() {
-        return web_api_url;
-    }
-
-    public void setWeb_api_url(String web_api_url) {
-        this.web_api_url = web_api_url;
-    }
-
-    public String getWCF_url() {
-        return WCF_url;
-    }
-
-    public void setWCF_url(String WCF_url) {
-        this.WCF_url = WCF_url;
-    }
-
-    public String getSessionKey() {
-        return SessionKey;
+    public String getSex ()
+    {
+        return sex;
     }
 
-    public void setSessionKey(String SessionKey) {
-        this.SessionKey = SessionKey;
+    public void setSex (String sex)
+    {
+        this.sex = sex;
     }
 
-    public Boolean getStatus() {
-        return Status;
+    public String getRegistration_expire ()
+    {
+        return registration_expire;
     }
 
-    public void setStatus(Boolean status) {
-        this.Status = status;
+    public void setRegistration_expire (String registration_expire)
+    {
+        this.registration_expire = registration_expire;
     }
 
-    public String getMessage() {
-        return Message;
+    public String getPosted_on ()
+    {
+        return posted_on;
     }
 
-    public void setMessage(String message) {
-        this.Message = message;
+    public void setPosted_on (String posted_on)
+    {
+        this.posted_on = posted_on;
     }
 
-    public Integer getMspid() {
-        return Mspid;
+    public String getDob_month ()
+    {
+        return dob_month;
     }
 
-    public void setMspid(Integer Mspid) {
-        this.Mspid = Mspid;
+    public void setDob_month (String dob_month)
+    {
+        this.dob_month = dob_month;
     }
 
-    public Integer getClientID() {
-        return ClientID;
+    public String getPassword ()
+    {
+        return password;
     }
 
-    public void setClientID(Integer ClientID) {
-        this.ClientID = ClientID;
+    public void setPassword (String password)
+    {
+        this.password = password;
     }
 
-    public Integer getSupplierId() {
-        return SupplierId;
+    public String getActivate ()
+    {
+        return activate;
     }
 
-    public void setSupplierId(Integer SupplierId) {
-        this.SupplierId = SupplierId;
+    public void setActivate (String activate)
+    {
+        this.activate = activate;
     }
 
-    public Integer getUserID() {
-        return userID;
+    public String getFirst_name ()
+    {
+        return first_name;
     }
 
-    public void setUserID(Integer userID) {
-        this.userID = userID;
+    public void setFirst_name (String first_name)
+    {
+        this.first_name = first_name;
     }
 
-    public Integer getMspClientID() {
-        return MspClientID;
+    public String getDob_year ()
+    {
+        return dob_year;
     }
 
-    public void setMspClientID(Integer MspClientID) {
-        this.MspClientID = MspClientID;
+    public void setDob_year (String dob_year)
+    {
+        this.dob_year = dob_year;
     }
 
-    public Integer getMspClientSupplierID() {
-        return MspClientSupplierID;
+    public String getAge ()
+    {
+        return age;
     }
 
-    public void setMspClientSupplierID(Integer MspClientSupplierID) {
-        this.MspClientSupplierID = MspClientSupplierID;
+    public void setAge (String age)
+    {
+        this.age = age;
     }
 
-    public String getFullname() {
-        return Fullname;
+    public String getPhone_no ()
+    {
+        return phone_no;
     }
 
-    public void setFullname(String Fullname) {
-        this.Fullname = Fullname;
+    public void setPhone_no (String phone_no)
+    {
+        this.phone_no = phone_no;
     }
 
-    public String getTitle() {
-        return Title;
+    public String getOld_rent_id ()
+    {
+        return old_rent_id;
     }
 
-    public void setTitle(String Title) {
-        this.Title = Title;
+    public void setOld_rent_id (String old_rent_id)
+    {
+        this.old_rent_id = old_rent_id;
     }
 
-    public String getClientName() {
-        return ClientName;
+    public String getMarital_status ()
+    {
+        return marital_status;
     }
 
-    public void setClientName(String ClientName) {
-        this.ClientName = ClientName;
+    public void setMarital_status (String marital_status)
+    {
+        this.marital_status = marital_status;
     }
 
-    public String getUsertype() {
-        return usertype;
+    public String getHome_town ()
+    {
+        return home_town;
     }
 
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
+    public void setHome_town (String home_town)
+    {
+        this.home_town = home_town;
     }
 
-    public List<MspClientList> getMspClientList() {
-        return MspClientList;
+    public String getStatus ()
+    {
+        return status;
     }
 
-    public void setMspClientList(List<MspClientList> MspClientList) {
-        this.MspClientList = MspClientList;
+    public void setStatus (String status)
+    {
+        this.status = status;
     }
 
-    public List<ClientMspList> getClientMspList() {
-        return ClientMspList;
+    public String getAvatar ()
+    {
+        return avatar;
     }
 
-    public void setClientMspList(List<ClientMspList> ClientMspList) {
-        this.ClientMspList = ClientMspList;
+    public void setAvatar (String avatar)
+    {
+        this.avatar = avatar;
     }
 
-    public List<MspClientSupplierList> getMspClientSupplierList() {
-        return MspClientSupplierList;
+    public String getMember_id ()
+    {
+        return member_id;
     }
 
-    public void setMspClientSupplierList(List<MspClientSupplierList> MspClientSupplierList) {
-        this.MspClientSupplierList = MspClientSupplierList;
+    public void setMember_id (String member_id)
+    {
+        this.member_id = member_id;
     }
 
-    public String getCWID() {
-        return CWID;
+    public String getLast_login ()
+    {
+        return last_login;
     }
 
-    public void setCWID(String CWID) {
-        this.CWID = CWID;
+    public void setLast_login (String last_login)
+    {
+        this.last_login = last_login;
     }
 
-    public String getLoginurlmobile() {
-        return Loginurlmobile;
+    public String getFlag ()
+    {
+        return flag;
     }
 
-    public void setLoginurlmobile(String Loginurlmobile) {
-        this.Loginurlmobile = Loginurlmobile;
+    public void setFlag (String flag)
+    {
+        this.flag = flag;
     }
 
-    public String getLoginurltablet() {
-        return Loginurltablet;
+    public String getOld_hostel_id ()
+    {
+        return old_hostel_id;
     }
 
-    public void setLoginurltablet(String Loginurltablet) {
-        this.Loginurltablet = Loginurltablet;
+    public void setOld_hostel_id (String old_hostel_id)
+    {
+        this.old_hostel_id = old_hostel_id;
     }
 
-    public CommonErrorMessages getCommonErrorMessages() {
-        return CommonErrorMessages;
+    public String getEmail ()
+    {
+        return email;
     }
 
-    public void setCommonErrorMessages(CommonErrorMessages CommonErrorMessages) {
-        this.CommonErrorMessages = CommonErrorMessages;
+    public void setEmail (String email)
+    {
+        this.email = email;
     }
 
-    public AlertsEntity getAlertsEntity() {
-        return AlertsEntity;
+    public String getAddress ()
+    {
+        return address;
     }
 
-    public void setAlertsEntity(AlertsEntity AlertsEntity) {
-        this.AlertsEntity = AlertsEntity;
+    public void setAddress (String address)
+    {
+        this.address = address;
     }
 
-    public List<SettingsEntity> getSettingsEntity() {
-        return SettingsEntity;
+    public String getSpoken_language ()
+    {
+        return spoken_language;
     }
 
-    public void setSettingsEntity(List<SettingsEntity> settingsEntity) {
-        this.SettingsEntity = settingsEntity;
+    public void setSpoken_language (String spoken_language)
+    {
+        this.spoken_language = spoken_language;
     }
 
-    public Integer getProxyUserId() {
-        return proxyUserId;
+    public String getProfile_status ()
+    {
+        return profile_status;
     }
 
-    public void setProxyUserId(Integer proxyUserId) {
-        this.proxyUserId = proxyUserId;
+    public void setProfile_status (String profile_status)
+    {
+        this.profile_status = profile_status;
     }
 
-    public Integer getDesktopUserId() {
-        return DesktopUserId;
+    public String getLast_name ()
+    {
+        return last_name;
     }
 
-    public void setDesktopUserId(Integer DesktopUserId) {
-        this.DesktopUserId = DesktopUserId;
+    public void setLast_name (String last_name)
+    {
+        this.last_name = last_name;
     }
 
-    public Integer getUserTypeId() {
-        return UserTypeId;
+    public String getDob_date ()
+    {
+        return dob_date;
     }
 
-    public void setUserTypeId(Integer UserTypeId) {
-        this.UserTypeId = UserTypeId;
+    public void setDob_date (String dob_date)
+    {
+        this.dob_date = dob_date;
     }
 
-    public List<MobieModuleList> getMobieModuleList() {
-        return MobieModuleList;
+    public String getOld_stay_id ()
+    {
+        return old_stay_id;
     }
 
-    public void setMobieModuleList(List<MobieModuleList> MobieModuleList) {
-        this.MobieModuleList = MobieModuleList;
+    public void setOld_stay_id (String old_stay_id)
+    {
+        this.old_stay_id = old_stay_id;
     }
 
-    public String getScreenTitle() {
-        return ScreenTitle;
-    }
-
-    public void setScreenTitle(String ScreenTitle) {
-        this.ScreenTitle = ScreenTitle;
-    }
-
-
-public class MobieModuleList implements Serializable{
-
-    private String ModuleName;
-    private Integer rightID;
-    private Integer MobileModuleID;
-    private Boolean DefaultModule;
-    private Integer Key;
-
-    public String getModuleName() {
-        return ModuleName;
-    }
-
-    public void setModuleName(String ModuleName) {
-        this.ModuleName = ModuleName;
-    }
-
-    public Integer getRightID() {
-        return rightID;
-    }
-
-    public void setRightID(Integer rightID) {
-        this.rightID = rightID;
-    }
-
-    public Integer getMobileModuleID() {
-        return MobileModuleID;
-    }
-
-    public void setMobileModuleID(Integer MobileModuleID) {
-        this.MobileModuleID = MobileModuleID;
-    }
 
-    public Boolean getDefaultModule() {
-        return DefaultModule;
-    }
-
-    public void setDefaultModule(Boolean DefaultModule) {
-        this.DefaultModule = DefaultModule;
-    }
-
-    public Integer getKey() {
-        return Key;
-    }
-
-    public void setKey(Integer Key) {
-        this.Key = Key;
-    }
-
-}
-
- public   class SettingsEntity implements Serializable{
 
-    public String Key;
-    private String Value;
-    private String Messgae;
 
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String Key) {
-        this.Key = Key;
-    }
-
-    public String getValue() {
-        return Value;
-    }
-
-    public void setValue(String Value) {
-        this.Value = Value;
-    }
 
-    public String getMessgae() {
-        return Messgae;
-    }
 
-    public void setMessgae(String Messgae) {
-        this.Messgae = Messgae;
-    }
 
-}
 }

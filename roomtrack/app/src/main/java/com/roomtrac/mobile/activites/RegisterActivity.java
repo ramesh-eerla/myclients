@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.pm.PackageManager;
@@ -16,6 +18,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -26,10 +29,26 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.roomtrac.mobile.R;
+import com.roomtrac.mobile.Uicomponents.CustomProgressDialog;
+import com.roomtrac.mobile.connectioncalls.datasets.LoginDataset;
+import com.roomtrac.mobile.connectioncalls.datasets.RetrofitErrorResponse;
+import com.roomtrac.mobile.connectioncalls.datasets.RetrofitResponse;
+import com.roomtrac.mobile.connectioncalls.interfaces.STRequestInterface;
+import com.roomtrac.mobile.controller.AppController;
+import com.roomtrac.mobile.services.RequestParams;
+import com.roomtrac.mobile.utils.CommonHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -47,37 +66,45 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private RegisterActivity.UserLoginTask mAuthTask = null;
+        // UI references.
 
-    // UI references.
-
-    private TextInputEditText mName,mPasswordView,mEmailView;
-    private View mProgressView;
-    private View mLoginFormView;
+    private TextInputEditText mName,mPasswordView,mConfirmPassword,mEmailView,mMobile_number;
+   private String name_value,emial_value,pwd_value,mobile_value;
+   private View mRegisterFormView;
+   private ProgressDialog mProgressView;
+   private CommonHelper mCommonHelper;
+   private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_register);
+        mCommonHelper=new CommonHelper();
+        mContext=this;
         // Set up the login form.
         mName=findViewById(R.id.input_name);
         mEmailView =  findViewById(R.id.input_email);
-        populateAutoComplete();
-
         mPasswordView = findViewById(R.id.input_password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mConfirmPassword=findViewById(R.id.input_cnfpassword);
+        mRegisterFormView=findViewById(R.id.parent);
+
+
+        mConfirmPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
+            public void onFocusChange(View view, boolean b) {
+                pwd_value=mPasswordView.getText().toString();
+                if(!b&&!TextUtils.isEmpty(pwd_value)){
+                    String cnfpwd=mConfirmPassword.getText().toString();
+                    if(!pwd_value.equalsIgnoreCase(cnfpwd)){
+                        mConfirmPassword.setError("Password Missmatch");
+                    }else{
+                        mConfirmPassword.setError(null);
+                    }
+
                 }
-                return false;
             }
         });
+        mMobile_number=findViewById(R.id.input_phonenumber);
 
         AppCompatButton mEmailSignInButton = findViewById(R.id.btn_signup);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -91,43 +118,6 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         mProgressView = findViewById(R.id.login_progress)*/;
     }
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            // TODO: alert the user with a Snackbar/AlertDialog giving them the permission rationale
-            // To use the Snackbar from the design support library, ensure that the activity extends
-            // AppCompatActivity and uses the Theme.AppCompat theme.
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
 
 
     /**
@@ -136,34 +126,33 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        emial_value = mEmailView.getText().toString();
+        pwd_value = mPasswordView.getText().toString();
+        name_value=mName.getText().toString();
+        mobile_value=mMobile_number.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (!TextUtils.isEmpty(pwd_value) && !isPasswordValid(pwd_value)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(emial_value)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(emial_value)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
@@ -176,9 +165,47 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            mProgressView = mCommonHelper.showDialog(mContext);
+
+
+            RequestParams.Register register= new RequestParams().new Register().register_user(name_value, emial_value,
+                    pwd_value, mobile_value);
+            STRequestInterface mApiService = AppController.getInterfaceService(RegisterActivity.this);
+            Call<RetrofitResponse>   mService = mApiService.user_Register(getString(R.string.user_registration), register);
+          mService.enqueue(new Callback<RetrofitResponse>() {
+              @Override
+              public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
+                  mProgressView.dismiss();
+                  if(response.isSuccessful()){
+
+                  }else{
+                      JsonParser parser = new JsonParser();
+                      JsonElement mJson = null;
+                      try {
+                          mJson = parser.parse(response.errorBody().string());
+                          Gson gson = new Gson();
+                          RetrofitErrorResponse errorResponse = gson.fromJson(mJson, RetrofitErrorResponse.class);
+                          String error_message = errorResponse.getMessage();
+                          CommonHelper.showErrorAlertDiaolog(RegisterActivity.this, "Register Failure", error_message);
+                      } catch (IOException ex) {
+                          ex.printStackTrace();
+                      }
+
+                  }
+              }
+
+              @Override
+              public void onFailure(Call<RetrofitResponse> call, Throwable t) {
+                  mProgressView.dismiss();
+                  if (t instanceof IOException) {
+                      CommonHelper.showErrorAlertDiaolog(mContext, "NetWork Error", "No Interrnet Connection");
+
+                  }
+                  else {
+                      CommonHelper.showErrorAlertDiaolog(mContext, "NetWork Unkown", "Unkown Connection");
+                  }
+              }
+          });
         }
     }
 
@@ -192,41 +219,6 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         return password.length() > 4;
     }
 
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -282,62 +274,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
 
 

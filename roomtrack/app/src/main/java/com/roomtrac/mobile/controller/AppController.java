@@ -142,16 +142,15 @@ public class AppController extends Application {
         return mRequestQueue;
     }
 
-    public static STRequestInterface getInterfaceService(boolean sessionStatus) {
+    public static STRequestInterface getInterfaceService(Context mContext) {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         // set your desired log level
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = null;
-        final String localSessionKey;
 
-        if (sessionStatus) {
+
             okHttpClient = new OkHttpClient().newBuilder()
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(60, TimeUnit.SECONDS)
@@ -166,27 +165,10 @@ public class AppController extends Application {
                     })
                     .addInterceptor(logging)
                     .build();
-        } else {
-            okHttpClient = new OkHttpClient().newBuilder()
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
-                    .addInterceptor(new Interceptor() {
-                        @Override
-                        public okhttp3.Response intercept(Chain chain) throws IOException {
-                            return chain.proceed(chain.request()
-                                    .newBuilder()
-                                     .build());
-                        }
-                    })
-                    .addInterceptor(logging)
-                    .build();
-
-        }
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Resources.getSystem().getString(
+                .baseUrl(mContext.getResources().getString(
                         R.string.base_URL) + "/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())

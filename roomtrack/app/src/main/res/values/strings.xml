@@ -9,7 +9,7 @@
     <string name="astrick">*</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="base_URL">http://qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api/</string>
+    <string name="base_URL">http://qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email/Phonenumber</string>
     <string name="prompt_password">Password </string>
@@ -40,6 +40,8 @@
     <string name="no_internet" translatable="false">No internet</string>
     <string name="parsing_failed" translatable="false">Parsing Failure</string>
     <string name="auth_failed" translatable="false">Authentication Failure</string>
+    <string name="user_registration">userregisteration</string>
+    <string name="user_login">login</string>
 
 
 </resources>
