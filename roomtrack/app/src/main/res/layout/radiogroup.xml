@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_45"
+        android:layout_weight="3"
+    android:layout_marginTop="@dimen/dim_5"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/rd_bt_1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dim_40"
+            android:layout_weight="1"
+            android:background="@drawable/pressed"
+            android:textSize="@dimen/dim_12"
+            android:textAllCaps="false"
+            android:stateListAnimator="@drawable/statelisteranimater"
+            android:textColor="@drawable/textselector" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/rd_bt_2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dim_40"
+            android:background="@drawable/pressed"
+            android:stateListAnimator="@drawable/statelisteranimater"
+            android:layout_weight="1"
+            android:textSize="@dimen/dim_12"
+            android:textAllCaps="false"
+            android:textColor="@drawable/textselector" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/rd_bt_3"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dim_40"
+            android:layout_weight="1"
+            android:background="@drawable/pressed"
+            android:stateListAnimator="@drawable/statelisteranimater"
+            android:textSize="@dimen/dim_12"
+            android:textAllCaps="false"
+            android:textColor="@drawable/textselector" />
+
+    </RadioGroup>

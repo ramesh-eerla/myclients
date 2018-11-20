@@ -42,6 +42,11 @@
     <string name="auth_failed" translatable="false">Authentication Failure</string>
     <string name="user_registration">userregisteration</string>
     <string name="user_login">login</string>
+    <string name="apartments">Apartments</string>
+    <string name="rooms">Rooms</string>
+    <string name="roommates">Roommates</string>
+    <string name="hostels">Hostels</string>
+    <string name="payingguests">Paying Guests</string>
 
 
 </resources>

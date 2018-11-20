@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0050ef</color>
-    <color name="colorPrimaryDark">#303535</color>
+    <color name="colorPrimary">#0d47a1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorDark">#002171</color>
     <color name="colorAccent">#0050ef</color>
+    <color name="textcolor">#ffffff</color>
+    <color name="buttons">#5472d3</color>
 
     <color name="inputtextcolor">#1ba1e2</color>
     <color name="loginbuttoncolor">#76a5f9</color>
     <color name="transparent">#00000000</color>
+    <color name="count_circlecolor"></color>
     <!--<color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>-->
+    <color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="diffcolor">#FF4081</color>
 </resources>

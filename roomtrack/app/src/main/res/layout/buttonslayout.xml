@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activites.LandigpageActivity"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatButton
+        style="@style/button"
+        android:layout_width="@dimen/dim_140"
+        android:layout_height="wrap_content"
+        android:text="@string/apartments"
+        android:textSize="16sp"
+        android:id="@+id/appartments"
+        android:padding="@dimen/dim_18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.150" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/rooms"
+        style="@style/button"
+        android:layout_width="@dimen/dim_140"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_18"
+        android:textSize="16sp"
+        android:text="@string/rooms"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/roommates"
+        style="@style/button"
+        android:layout_width="@dimen/dim_140"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_18"
+        android:textSize="16sp"
+        android:text="@string/roommates"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/hostels"
+        style="@style/button"
+        android:layout_width="@dimen/dim_140"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_18"
+        android:textSize="16sp"
+        android:text="@string/hostels"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/payingguest"
+        style="@style/button"
+        android:layout_width="@dimen/dim_140"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_18"
+        android:textSize="16sp"
+        android:text="@string/payingguests"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.677" />
+</android.support.constraint.ConstraintLayout>

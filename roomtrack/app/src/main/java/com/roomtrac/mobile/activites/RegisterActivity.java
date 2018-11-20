@@ -70,6 +70,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
 
     private TextInputEditText mName,mPasswordView,mConfirmPassword,mEmailView,mMobile_number;
    private String name_value,emial_value,pwd_value,mobile_value;
+   private TextView link_login;
    private View mRegisterFormView;
    private ProgressDialog mProgressView;
    private CommonHelper mCommonHelper;
@@ -87,8 +88,13 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         mPasswordView = findViewById(R.id.input_password);
         mConfirmPassword=findViewById(R.id.input_cnfpassword);
         mRegisterFormView=findViewById(R.id.parent);
-
-
+        link_login=findViewById(R.id.link_login);
+        link_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mConfirmPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {

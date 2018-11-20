@@ -95,6 +95,8 @@ public class LoginActivity extends Activity  {
 
 
         mPasswordView = findViewById(R.id.pwd_edit);
+        mEmailView.setText("saladisrinivas88@gmail.com");
+        mPasswordView.setText("123456");
         register=(findViewById(R.id.register));
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -178,7 +180,7 @@ public class LoginActivity extends Activity  {
                 public void onResponse(Call<LoginDataset> call, Response<LoginDataset> response) {
                     mProgressView.dismiss();
                     if(response.isSuccessful()){
-
+                  startActivity(new Intent(LoginActivity.this,LandigpageActivity.class));
                     }else{
                         JsonParser parser = new JsonParser();
                         JsonElement mJson = null;

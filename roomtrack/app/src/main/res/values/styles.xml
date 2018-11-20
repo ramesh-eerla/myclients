@@ -68,8 +68,29 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="button" parent="@android:style/Widget.Button">
+    <item name="android:gravity">center_vertical|center_horizontal</item>
+    <item name="android:textColor">#FFFFFFFF</item>
+    <item name="android:shadowColor">#FF000000</item>
+    <item name="android:shadowDx">0</item>
+    <item name="android:shadowDy">1</item>
+    <item name="android:shadowRadius">1</item>
+    <item name="android:textSize">16dp</item>
+    <item name="android:textStyle">bold</item>
+        <item name="android:padding">5dp</item>
+    <item name="android:background">@color/buttons</item>
+    <item name="android:focusable">true</item>
+    <item name="android:clickable">true</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
+    <style name="tallerBarStyle" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">8dip</item>
+        <item name="android:maxHeight">10dip</item>
+    </style>
 </resources>

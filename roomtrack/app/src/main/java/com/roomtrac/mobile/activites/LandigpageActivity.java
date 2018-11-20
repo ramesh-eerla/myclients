@@ -1,8 +1,12 @@
 package com.roomtrac.mobile.activites;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,29 +23,36 @@ import com.roomtrac.mobile.R;
  * Created by Ramesh.eerla on 24/10/2018.
  */
 public class LandigpageActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener , View.OnClickListener {
 
+    AppCompatButton appartments,rooms,roommates,hostels,payingguest;
+    AppCompatImageView filter;
+    Context mContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        mContext=this;
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        appartments=findViewById(R.id.appartments);
+        rooms=findViewById(R.id.rooms);
+        roommates=findViewById(R.id.roommates);
+        hostels=findViewById(R.id.hostels);
+        payingguest=findViewById(R.id.payingguest);
+        filter=findViewById(R.id.filter);
+        appartments.setOnClickListener(this);
+        rooms.setOnClickListener(this);
+        roommates.setOnClickListener(this);
+        hostels.setOnClickListener(this);
+        payingguest.setOnClickListener(this);
+        filter.setOnClickListener(this);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -57,7 +68,7 @@ public class LandigpageActivity extends AppCompatActivity
         }
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -78,7 +89,7 @@ public class LandigpageActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -102,5 +113,29 @@ public class LandigpageActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int view_id=v.getId();
+        switch (view_id){
+            case R.id.filter:
+                startActivity(new Intent(mContext,FilterActivity.class));
+                break;
+            case R.id.appartments:
+
+                break;
+            case R.id.rooms :
+                break;
+            case R.id.roommates :
+                break;
+            case R.id.hostels:
+                break;
+            case R.id.payingguest:
+                break;
+
+        }
+
+
     }
 }
