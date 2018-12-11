@@ -4,22 +4,11 @@ package com.roomtrac.mobile.controller;
  */
 
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Application;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.ParseException;
-import android.os.PowerManager;
 import android.text.TextUtils;
-import android.util.Config;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -30,19 +19,13 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.roomtrac.mobile.R;
-import com.roomtrac.mobile.connectioncalls.interfaces.STRequestInterface;
+import com.roomtrac.mobile.connectioncalls.interfaces.RTRequestInterface;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -50,8 +33,6 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -142,7 +123,7 @@ public class AppController extends Application {
         return mRequestQueue;
     }
 
-    public static STRequestInterface getInterfaceService(Context mContext) {
+    public static RTRequestInterface getInterfaceService(Context mContext) {
 
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         // set your desired log level
@@ -174,7 +155,7 @@ public class AppController extends Application {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        final STRequestInterface mInterfaceService = retrofit.create(STRequestInterface.class);
+        final RTRequestInterface mInterfaceService = retrofit.create(RTRequestInterface.class);
         return mInterfaceService;
     }
 

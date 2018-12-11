@@ -57,7 +57,7 @@ public class FontUtil {
 		Typeface typeFace = null;
 		if (fontFileName != null && fontFileName.trim().length() > 0) {
 			try {
-				typeFace = Typeface.createFromAsset(context.getAssets(),"fonts/Roboto.ttf");
+				typeFace = Typeface.createFromAsset(context.getAssets(),"fonts/roboto.ttf");
 			} catch (Exception e) {
 				Logger.w(TAG, "Unable to create TypeFace for '" + fontFileName
 						+ "' - " + e.getMessage());

@@ -62,7 +62,7 @@ public class CustomTextView extends android.support.v7.widget.AppCompatTextView 
 	 */
 	private void init(Context context) {
 		mCntxt = context;
-		Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto.ttf");
+		Typeface typeFace = Typeface.createFromAsset(context.getAssets(), "fonts/roboto.ttf");
 		this.setTypeface(typeFace);
 		//mFontUtil = new FontUtil(mCntxt);
 	}

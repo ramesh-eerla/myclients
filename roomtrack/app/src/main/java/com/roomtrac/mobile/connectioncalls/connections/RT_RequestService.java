@@ -20,10 +20,10 @@ import org.json.JSONObject;
 
 /**
  * Created by Ramesh.eerla on 24/10/2018.
- * ST_RequestService is for requesting server post ,get
+ * RT_RequestService is for requesting server post ,get
  */
 
-public class ST_RequestService {
+public class RT_RequestService {
 
     private Context mContext;
     private ResponceCallback mResponceCallback;
@@ -34,12 +34,12 @@ public class ST_RequestService {
 
     /**
      * Created by ramesh.eerla on 1/17/2017.
-     * ST_RequestService() is constructor
+     * RT_RequestService() is constructor
      *
      * @param context is the activity context object
     */
 
-    public ST_RequestService(Context context) {
+    public RT_RequestService(Context context) {
         this.mContext = context;
         try {
             this.mResponceCallback = (ResponceCallback) context;
@@ -52,7 +52,7 @@ public class ST_RequestService {
     }
 
 
-    public ST_RequestService(Context context, Object object) {
+    public RT_RequestService(Context context, Object object) {
         this.mContext = context;
         this.mObject = object;
         mResponceCallback = (ResponceCallback) object;
@@ -60,7 +60,7 @@ public class ST_RequestService {
     }
 
 
-    public ST_RequestService(Context context, Intent intent) {
+    public RT_RequestService(Context context, Intent intent) {
         this.mContext = context;
         this.mIntent = intent;
         this.mCommonHelper = new CommonHelper();

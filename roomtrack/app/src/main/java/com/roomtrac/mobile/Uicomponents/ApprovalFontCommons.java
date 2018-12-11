@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.util.DisplayMetrics;
 
 import com.roomtrac.mobile.R;
+import com.roomtrac.mobile.utils.Constants;
 
 
 public class ApprovalFontCommons {
@@ -35,10 +36,10 @@ public class ApprovalFontCommons {
 
 
 
-	public  Spanned manditoryString(String data,Context context){
+	public  static Spanned manditoryString(String data){
 
 
-		Spanned sp=Html.fromHtml("<font color=#8e8c8c>"+data+" "+"</font><font color='#ff0101'>"+context.getString(R.string.astrick)+"</font>");
+		Spanned sp=Html.fromHtml("<font color=#8e8c8c>"+data+" "+"</font><font color='#ff0101'>*</font>");
 
 		return sp;
 

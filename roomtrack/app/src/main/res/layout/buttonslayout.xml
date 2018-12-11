@@ -1,84 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activites.LandigpageActivity"
-    android:layout_height="match_parent">
+    tools:context=".activites.LandigpageActivity">
+
 
     <android.support.v7.widget.AppCompatButton
+        android:id="@+id/appartments"
         style="@style/button"
-        android:layout_width="@dimen/dim_140"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="@dimen/dim_10"
         android:text="@string/apartments"
         android:textSize="16sp"
-        android:id="@+id/appartments"
-        android:padding="@dimen/dim_18"
+        android:drawableLeft="@drawable/ic_apartment_icon"
+        android:background="@color/loginbuttoncolor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.150" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/rooms"
         style="@style/button"
-        android:layout_width="@dimen/dim_140"
+        android:layout_width="@dimen/dim_150"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_18"
-        android:textSize="16sp"
+        android:padding="@dimen/dim_10"
         android:text="@string/rooms"
+        android:textSize="16sp"
+        android:background="@color/rooms"
+        android:drawableLeft="@drawable/ic_apartment_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/roommates"
         style="@style/button"
-        android:layout_width="@dimen/dim_140"
+        android:layout_width="@dimen/dim_150"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_18"
-        android:textSize="16sp"
+        android:padding="@dimen/dim_10"
         android:text="@string/roommates"
+        android:textSize="16sp"
+        android:background="@color/rooms"
+        android:drawableLeft="@drawable/ic_roomates_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.401" />
+        app:layout_constraintVertical_bias="0.375" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/hostels"
         style="@style/button"
-        android:layout_width="@dimen/dim_140"
+        android:layout_width="@dimen/dim_150"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_18"
-        android:textSize="16sp"
+        android:padding="@dimen/dim_10"
         android:text="@string/hostels"
+        android:textSize="16sp"
+        android:background="@color/hostel"
+        android:drawableLeft="@drawable/ic_hostel_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/payingguest"
         style="@style/button"
-        android:layout_width="@dimen/dim_140"
+        android:layout_width="@dimen/dim_150"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_18"
-        android:textSize="16sp"
+        android:padding="@dimen/dim_10"
         android:text="@string/payingguests"
+        android:textSize="16sp"
+        android:background="@color/paygust"
+        android:drawableLeft="@drawable/ic_payingguest_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintVertical_bias="0.577" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/postyourproperty"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_20"
+        android:padding="@dimen/dim_10"
+        android:text="@string/postproperty"
+        android:textSize="16sp"
+        android:background="@color/loginbuttoncolor"
+        android:drawableLeft="@drawable/ic_apartment_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left" />
 </android.support.constraint.ConstraintLayout>

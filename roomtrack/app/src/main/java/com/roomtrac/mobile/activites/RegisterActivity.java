@@ -1,31 +1,22 @@
 package com.roomtrac.mobile.activites;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.widget.AppCompatButton;
+import android.text.Html;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -33,11 +24,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.roomtrac.mobile.R;
-import com.roomtrac.mobile.Uicomponents.CustomProgressDialog;
-import com.roomtrac.mobile.connectioncalls.datasets.LoginDataset;
 import com.roomtrac.mobile.connectioncalls.datasets.RetrofitErrorResponse;
 import com.roomtrac.mobile.connectioncalls.datasets.RetrofitResponse;
-import com.roomtrac.mobile.connectioncalls.interfaces.STRequestInterface;
+import com.roomtrac.mobile.connectioncalls.interfaces.RTRequestInterface;
 import com.roomtrac.mobile.controller.AppController;
 import com.roomtrac.mobile.services.RequestParams;
 import com.roomtrac.mobile.utils.CommonHelper;
@@ -49,8 +38,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 public class RegisterActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -89,6 +76,7 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
         mConfirmPassword=findViewById(R.id.input_cnfpassword);
         mRegisterFormView=findViewById(R.id.parent);
         link_login=findViewById(R.id.link_login);
+        link_login.setText(Html.fromHtml("Already have an account?<font color='yellow'> Sign in</font>"));
         link_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,14 +164,15 @@ public class RegisterActivity extends Activity implements LoaderManager.LoaderCa
 
             RequestParams.Register register= new RequestParams().new Register().register_user(name_value, emial_value,
                     pwd_value, mobile_value);
-            STRequestInterface mApiService = AppController.getInterfaceService(RegisterActivity.this);
+            RTRequestInterface mApiService = AppController.getInterfaceService(RegisterActivity.this);
             Call<RetrofitResponse>   mService = mApiService.user_Register(getString(R.string.user_registration), register);
           mService.enqueue(new Callback<RetrofitResponse>() {
               @Override
               public void onResponse(Call<RetrofitResponse> call, Response<RetrofitResponse> response) {
                   mProgressView.dismiss();
                   if(response.isSuccessful()){
-
+                      Snackbar.make(mEmailView,response.body().getMessage(),Snackbar.LENGTH_SHORT).show();
+                      finish();
                   }else{
                       JsonParser parser = new JsonParser();
                       JsonElement mJson = null;

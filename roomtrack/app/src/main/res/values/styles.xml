@@ -12,8 +12,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:fontFamily">@font/califi</item>
 
         <!--<item name="colorPrimaryVariant">@color/my_app_primary_variant_color</item>
@@ -39,6 +39,7 @@
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
     </style>
+
     <style name="MyAppearance" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/inputtextcolor</item>
         <item name="android:fontFamily">@font/calififont</item>
@@ -67,6 +68,7 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="button" parent="@android:style/Widget.Button">

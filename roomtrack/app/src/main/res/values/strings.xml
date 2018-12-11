@@ -11,10 +11,10 @@
     <string name="title_activity_login">Sign in</string>
     <string name="base_URL">http://qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email/Phonenumber</string>
+    <string name="prompt_email">Email :</string>
     <string name="prompt_password">Password </string>
-    <string name="forgetpassword">Forgot Password?</string>
-    <string name="register">Register an Account</string>
+    <string name="forgetpassword">Forgot Password ?</string>
+    <string name="register">Create an Account</string>
     <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
@@ -23,6 +23,8 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."
     </string>
+    <string name="login_content">Contact with us</string>
+    <string name="landingpage_1">What are you looking for \n Select one</string>
 
     <!-- Network Messages -->
     <string name="nw_connection_timeout">Connection Timeout</string>
@@ -42,11 +44,154 @@
     <string name="auth_failed" translatable="false">Authentication Failure</string>
     <string name="user_registration">userregisteration</string>
     <string name="user_login">login</string>
+    <string name="searchrooms">searchforrent  </string>
+    <string name="searchhostel">searchforhostel</string>
+    <!--<string name="searchrooms">searchdataforrooms</string>
+    <string name="searchhostel">searchdataforhostel</string>-->
     <string name="apartments">Apartments</string>
     <string name="rooms">Rooms</string>
     <string name="roommates">Roommates</string>
     <string name="hostels">Hostels</string>
     <string name="payingguests">Paying Guests</string>
+    <string name="postproperty">Post Your Property</string>
+    <string name="facebook_app_id">1048564081982756</string>
+    <string name="fb_login_protocol_scheme">fb1048564081982756</string>
+
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Look For Rooms</string>
+    <string name="slide_1_desc">The easiest way to find out Rooms and Roommates!</string>
+
+    <string name="slide_2_title">Home or Appartments </string>
+    <string name="slide_2_desc">Check avilablity of  homes and appartments for rent!</string>
+
+    <string name="slide_3_title">Find Hostel</string>
+    <string name="slide_3_desc">You can find out hostels for men and women </string>
+
+    <string name="slide_4_title">Post Your Property </string>
+    <string name="slide_4_desc">You can easily post your property for rent </string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="autosearch">autosearch</string>
+    <string name="tagline">Tag Line</string>
+    <string name="roomtype">Room Type</string>
+    <string-array name="rmtypes">
+        <item>Choose option</item>
+        <item>Single room</item>
+        <item>Double room</item>
+        <item>Triple room</item>
+    </string-array>
+    <string name="furnishtype">Furnish Type</string>
+    <string name="furnished">Furnished</string>
+    <string name="semifurnished">Semi Furnished</string>
+    <string name="unfurnished">Un Furnished</string>
+    <string-array name="furnishypes">
+        <item>Choose option</item>
+        <item>@string/furnished</item>
+        <item>@string/semifurnished</item>
+        <item>@string/unfurnished</item>
+    </string-array>
+    <string name="facilityinroom">Facility in Room</string>
+    <string name="nonac">Non A/c</string>
+    <string name="ac">A/C</string>
+    <string-array name="facilitytype">
+        <item>@string/nonac</item>
+        <item>@string/ac</item>
+    </string-array>
+    <string name="name">Name</string>
+    <string name="foodtype">Food Type</string>
+    <string name="veg">Veg</string>
+    <string name="nonveg">Non Veg</string>
+
+    <string-array name="foodlist">
+        <item>@string/veg</item>
+        <item>@string/nonveg</item>
+    </string-array>
+    <string name="area">Area in Sq. ft</string>
+    <string name="rent">Per Month Rent</string>
+    <string name="membersperroom">Members per Room</string>
+    <string-array name="membersperlist">
+        <item>Select</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="hometype">
+        <item>Select</item>
+        <item>1 BHK</item>
+        <item>2 BHK</item>
+        <item>3 BHK</item>
+        <item>4 BHK</item>
+        <item>4+ BHK</item>
+        <item>Pent House</item>
+       </string-array>
+
+    <string name="vacancy">Vacancy for</string>
+    <string name="gender">Gender</string>
+    <string-array name="gendertype">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string name="age">Age</string>
+    <string name="minage">Min age</string>
+    <string name="maxage">Max age</string>
+    <string name="phonenumber">Phone Number</string>
+    <string name="availability">Availability</string>
+    <string name="country">Country</string>
+    <string name="state">State</string>
+    <string name="city">City</string>
+    <string name="location">Location</string>
+    <string name="aboutroom">Describe about your Room</string>
+    <string name="abouthome">Describe about your Home</string>
+    <string name="roomphoto">Upload Your Room Photographs</string>
+    <string name="homeaptType">Home/Apt Type</string>
+    <string name="homeaptis">Home/Apt Is</string>
+    <string name="preference">Preference</string>
+    <string-array name="home_pref">
+        <item>Family</item>
+        <item>Bachelor</item>
+    </string-array>
+    <string name="roomhomephoto">Upload Your Home/Apt Photographs</string>
+    <string name="hostelphoto">Upload Your Hostel Photographs</string>
+    <string name="abouthostle">Describe about your Hostel</string>
+    <string name="hostelnature">Hostel Nature</string>
+      <string-array name="hostelnaturetype">
+        <item>Normal</item>
+        <item>Delux</item>
+    </string-array>
+    <string name="dob">Date of Birth</string>
+    <string name="hosteltype">Hostel Type (Men/women)</string>
+    <string name="facilityinhostel">Facility in Hostel</string>
+    <string name="facilit">Facility</string>
+    <string name="furnish">Furnish</string>
+    <string name="changepwd">Change Password</string>
+    <string name="oldpwd">Old Password</string>
+    <string name="newpwd">New Password</string>
+    <string name="confpwd">Confirm Password</string>
+    <string name="hometown">Home Town</string>
+    <string name="address">Address</string>
+    <string name="meritalstatus">Marital Status</string>
+    <string name="post_room">postroomproperty</string>
+    <string name="imageupload">imageupload</string>
+    <string-array name="merital_list">
+    <item>Select</item>
+    <item>Married</item>
+    <item>Un-Married</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

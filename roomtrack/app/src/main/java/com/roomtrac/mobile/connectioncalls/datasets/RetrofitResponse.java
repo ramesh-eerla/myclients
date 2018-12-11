@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class RetrofitResponse {
     @Expose
-    @SerializedName("Message")
+    @SerializedName(value = "message",alternate = {"Message"})
     private String Message;
 
     @SerializedName("status")

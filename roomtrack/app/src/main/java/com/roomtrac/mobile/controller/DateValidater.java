@@ -105,6 +105,53 @@ public class DateValidater {
 		return featuredate;
 	}
 
-	
+	/*public boolean isValidMobile(String phone) {
+		return android.util.Patterns.PHONE.matcher(phone).matches();
+	}*/
+	public boolean isValidMobile(String phone) {
+		boolean check=false;
+		if(!Pattern.matches("[a-zA-Z]+", phone)) {
+			if(phone.length() < 6 || phone.length() > 13) {
+				// if(phone.length() != 10) {
+				check = false;
+
+			} else {
+				check = true;
+			}
+		} else {
+			check=false;
+		}
+		return check;
+	}
+
+	public String getCalenderMonth(String month){
+		switch (month)
+		{ case "Jan" :
+			return "01";
+			case "Feb":
+				return "02";
+			case "Mar":
+				return "03";
+			case "Apr":
+				return "04";
+			case "May":
+				return "05";
+			case "June":
+				return "06";
+			case "July":
+				return "07";
+			case "Aug":
+				return "08";
+			case "Sept":
+				return "09";
+			case "Oct":
+				return "10";
+			case "Nov":
+				return "11";
+			case "Dec":
+				return "12";
+		}
+	return "";
+	}
 
 }

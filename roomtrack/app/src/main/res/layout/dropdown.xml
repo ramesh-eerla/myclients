@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/dropdownlayout"
+    android:padding="@dimen/dim_5"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_text"
+        android:text="@string/hostels"
+        android:textSize="@dimen/font_cart"
+        />
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_40"
+        android:textSize="@dimen/font_cart"
+        android:id="@+id/edit_text_value"/>
+
+</LinearLayout>

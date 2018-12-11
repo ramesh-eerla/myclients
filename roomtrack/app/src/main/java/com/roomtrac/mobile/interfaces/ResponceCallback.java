@@ -9,7 +9,6 @@ import org.json.JSONObject;
 public interface ResponceCallback {
 
     public void callback(JSONObject responce);
-    public void callback(String response, boolean isThisTimeSheetSupported, String type);
     public void callback(Object responce, int requesttype);
     public void errorcallback(String errortitle, String errormessage);
 

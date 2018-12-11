@@ -1,70 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dim_10"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/approval_footer_textheading"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_49"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dim_5"
+        android:layout_marginRight="@dimen/dim_5"
+        android:gravity="center"
+        android:text="Filter"
+        android:textColor="@color/action_title_color"
+        android:textSize="@dimen/action_titile"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="@dimen/dim_5"
+        android:layout_marginRight="@dimen/dim_5"
+        android:layout_marginLeft="@dimen/dim_5"
+        android:layout_alignParentBottom="true"
+        android:background="@color/view_line_color"></View>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintVertical_bias="1.2"
-        app:layout_constraintRight_toRightOf="parent"
+
        >
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Radius"
+            android:text="@string/area"
             android:textSize="@dimen/list_item_sl_fontsize" />
-
-        <SeekBar
-            android:id="@+id/timeseekbar"
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dim_5"
-            android:progress="@integer/labels_common_font"
-            android:progressDrawable="@drawable/seekbar_style"
-            android:thumb="@drawable/custom_thumb"
-            android:layout_height="@dimen/dim_15" />
+            android:layout_height="@dimen/dim_40"
+            app:dsb_trackHeight="@dimen/dim_6"
+            app:dsb_thumbSize="@dimen/dim_10"
+            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorPopupEnabled="true"
+            android:id="@+id/seekbar_area"
+            app:dsb_min="500"
+            app:dsb_max="100000"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="-10dp"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight="0.5"
+                android:text="500"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekbar_area_value"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right"
+                android:text="100000"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093">
+        android:layout_marginTop="@dimen/dim_8"
+       >
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Budget"
+            android:text="@string/rent"
             android:textSize="@dimen/list_item_sl_fontsize" />
-
-        <SeekBar
-            android:id="@+id/priceseekbar"
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dim_5"
-            android:layout_height="@dimen/dim_15" />
+            android:layout_height="@dimen/dim_40"
+            app:dsb_trackHeight="@dimen/dim_6"
+            app:dsb_thumbSize="@dimen/dim_10"
+            android:id="@+id/rentseekbar"
+            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorPopupEnabled="true"
+            app:dsb_min="2000"
+            app:dsb_max="300000"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="-10dp"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight="0.5"
+                android:text="2000"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekbar_rent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right"
+                android:text="300000"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.193">
+        android:layout_marginTop="@dimen/dim_8"
+        >
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -72,31 +171,26 @@
             android:text="Gender"
             android:textSize="@dimen/list_item_sl_fontsize" />
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:weightSum="3"
+            android:weightSum="2"
             android:layout_marginTop="@dimen/dim_5"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
-            <RadioButton
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:buttonTint="@color/buttons"
                 android:text="Male"/>
-            <RadioButton
-                android:layout_width="wrap_content"
+            <CheckBox
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:buttonTint="@color/buttons"
                 android:text="Female"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/buttons"
-                android:text="Other"/>
-        </RadioGroup>
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -104,12 +198,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.293">
+        android:layout_marginTop="@dimen/dim_8"
+       >
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -117,52 +207,193 @@
             android:text="Age"
             android:textSize="@dimen/list_item_sl_fontsize" />
 
-        <SeekBar
-            android:id="@+id/ageseekbar"
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dim_5"
-            android:layout_height="@dimen/dim_15" />
+            android:layout_height="@dimen/dim_40"
+            app:dsb_trackHeight="@dimen/dim_6"
+            app:dsb_thumbSize="@dimen/dim_10"
+            android:id="@+id/ageseekbar"
+            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorPopupEnabled="true"
+            app:dsb_min="18"
+            app:dsb_max="100"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_marginTop="-10dp"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_weight="0.5"
+                android:text="  18"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekbar_age"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right"
+                android:text="100"
+                android:textColor="@color/colorDark"
+                android:textSize="@dimen/list_item_sl_fontsize" />
+
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.400">
+        android:layout_marginTop="@dimen/dim_8"
+        >
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View Type"
+            android:text="@string/foodtype"
             android:textSize="@dimen/list_item_sl_fontsize" />
 
-        <include android:id="@+id/viewtype"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="@dimen/dim_5"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/veg"/>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/nonveg"/>
 
-            layout="@layout/radiogroup"></include>
+        </LinearLayout>
+
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.600">
+        android:layout_marginTop="@dimen/dim_8"
+        >
 
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/facilit"
+            android:textSize="@dimen/list_item_sl_fontsize" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="@dimen/dim_5"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/nonac"/>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/ac"/>
 
-        <include android:id="@+id/recent"
-            layout="@layout/radiogroup"></include>
+        </LinearLayout>
+
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dim_8"
+        >
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/furnish"
+            android:textSize="@dimen/list_item_sl_fontsize" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_marginTop="@dimen/dim_5"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/furnished"></CheckBox>
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/buttons"
+                android:text="@string/semifurnished"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dim_5"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/buttons"
+                android:text="@string/unfurnished"></CheckBox>
 
 
-</android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_submit"
+        android:layout_margin="@dimen/dim_3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:textAllCaps="false"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@color/loginbuttoncolor"
+        android:fontFamily="@font/calififont"
+        android:textStyle="bold"
+        android:textSize="@dimen/screen_title"
+        android:text="Apply"/>
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>

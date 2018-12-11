@@ -1,66 +1,63 @@
 package com.roomtrac.mobile.activites;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
 
 import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.TextInputEditText;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.roomtrac.mobile.R;
-import com.roomtrac.mobile.Uicomponents.CustomProgressDialog;
+import com.roomtrac.mobile.connectioncalls.connections.RT_RetrofitSevicecall;
 import com.roomtrac.mobile.connectioncalls.datasets.LoginDataset;
-import com.roomtrac.mobile.connectioncalls.datasets.RetrofitErrorResponse;
-import com.roomtrac.mobile.connectioncalls.datasets.RetrofitResponse;
-import com.roomtrac.mobile.connectioncalls.interfaces.STRequestInterface;
+import com.roomtrac.mobile.connectioncalls.interfaces.RTRequestInterface;
 import com.roomtrac.mobile.controller.AppController;
+import com.roomtrac.mobile.interfaces.ResponceCallback;
 import com.roomtrac.mobile.services.RequestParams;
 import com.roomtrac.mobile.utils.CommonHelper;
+import com.roomtrac.mobile.utils.Constants;
+
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import static com.roomtrac.mobile.controller.AppController.TAG;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends Activity  {
+public class LoginActivity extends Activity implements ResponceCallback {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -74,28 +71,43 @@ public class LoginActivity extends Activity  {
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-
+    CallbackManager callbackManager;
     // UI references.
-
-    private TextInputEditText mPasswordView,mEmailView;
+    private EditText mEmailView,mPasswordView;
     private TextView register;
     private ProgressDialog mProgressView;
     private View mLoginFormView;
     private CommonHelper mCommonHelper;
     private Context mContext;
+    private GoogleSignInClient mGoogleSignInClient;
+    private int RC_SIGN_IN=111;
+    private RT_RetrofitSevicecall mRt_retrofitSevicecall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         mContext=this;
+        callbackManager = CallbackManager.Factory.create();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken(Constants.GmailOauthid)
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mRt_retrofitSevicecall=new RT_RetrofitSevicecall(mContext);
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+if(isLoggedIn){
+    afterloginnavigation();
+}
         mCommonHelper=new CommonHelper();
         // Set up the login form.
         mEmailView =  findViewById(R.id.email_edit);
 
 
         mPasswordView = findViewById(R.id.pwd_edit);
-        mEmailView.setText("saladisrinivas88@gmail.com");
+        mEmailView.setText("saladisrinivas88@zoho.com");
         mPasswordView.setText("123456");
         register=(findViewById(R.id.register));
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -123,7 +135,7 @@ public class LoginActivity extends Activity  {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
+       // mLoginFormView = findViewById(R.id.login_form);
 
     }
     /**
@@ -167,50 +179,79 @@ public class LoginActivity extends Activity  {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            mProgressView = mCommonHelper.showDialog(mContext);
-
 
             RequestParams.LoginDetails login= new RequestParams().new LoginDetails().loginWithEmail(email,password);
-            STRequestInterface mApiService = AppController.getInterfaceService(mContext);
-            Call<LoginDataset> mService = mApiService.login(getString(R.string.user_login), login);
-            mService.enqueue(new Callback<LoginDataset>() {
-                @Override
-                public void onResponse(Call<LoginDataset> call, Response<LoginDataset> response) {
-                    mProgressView.dismiss();
-                    if(response.isSuccessful()){
-                  startActivity(new Intent(LoginActivity.this,LandigpageActivity.class));
-                    }else{
-                        JsonParser parser = new JsonParser();
-                        JsonElement mJson = null;
-                        try {
-                            mJson = parser.parse(response.errorBody().string());
-                            Gson gson = new Gson();
-                            RetrofitErrorResponse errorResponse = gson.fromJson(mJson, RetrofitErrorResponse.class);
-                            String error_message = errorResponse.getMessage();
-                            CommonHelper.showErrorAlertDiaolog(mContext, "Login Failure", error_message);
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
 
-                    }
-                }
+            mRt_retrofitSevicecall.loginpost(Constants.RT_LOGIN,login);
 
-                @Override
-                public void onFailure(Call<LoginDataset> call, Throwable t) {
-                    mProgressView.dismiss();
-                    if (t instanceof IOException) {
-                        CommonHelper.showErrorAlertDiaolog(mContext, "NetWork Error", "No Interrnet Connection");
-
-                    }
-                    else {
-                        CommonHelper.showErrorAlertDiaolog(mContext, "NetWork Unkown", "Unkown Connection");
-                    }
-                }
-            });
         }
 
+    }
+
+    public void gmaillogin(View view){
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+
+    }
+
+public void afterloginnavigation(){
+    /*Intent intent = new Intent(LoginActivity.this,
+            LandigpageActivity.class);
+    intent.putExtra("userProfile", json_object.toString());
+    startActivity(intent);*/
+    startActivity(new Intent(LoginActivity.this,LandigpageActivity.class));
+}
+    public void facbooklogin(View view){
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        /*LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");*/
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                getUserDetails(loginResult);
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                CommonHelper.showErrorAlertDiaolog(mContext, "Facebook SignIn", "Facebook SignIn Failed");
+            }
+        });
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }else{
+            callbackManager.onActivityResult(requestCode, resultCode, data); 
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            //updateUI(account);
+            afterloginnavigation();
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.d(TAG, "signInResult:failed code=" + e.getStatusCode());
+            CommonHelper.showErrorAlertDiaolog(mContext, "Google SignIn", "Google SignIn Failed");
+            /*updateUI(null);*/
+
+        }
     }
 
     private boolean isEmailValid(String email) {
@@ -223,8 +264,44 @@ public class LoginActivity extends Activity  {
         return password.length() > 4;
     }
 
+    protected void getUserDetails(LoginResult loginResult) {
+        GraphRequest data_request = GraphRequest.newMeRequest(
+                loginResult.getAccessToken(),
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject json_object,
+                            GraphResponse response) {
+                        afterloginnavigation();
+
+                    }
+
+                });
+        Bundle permission_param = new Bundle();
+        permission_param.putString("fields", "id,name,email,picture.width(120).height(120)");
+                data_request.setParameters(permission_param);
+        data_request.executeAsync();
+
+    }
 
 
+    @Override
+    public void callback(JSONObject responce) {
 
+    }
+
+    @Override
+    public void callback(Object responce, int requesttype) {
+        LoginDataset loginDataset= ((LoginDataset) responce);
+        if(loginDataset.getStatus().equalsIgnoreCase("false"))
+        CommonHelper.showErrorAlertDiaolog(mContext, "Login Failure", loginDataset.getMessage());
+        else
+        afterloginnavigation();
+    }
+
+    @Override
+    public void errorcallback(String errortitle, String errormessage) {
+
+    }
 }
 

@@ -142,7 +142,7 @@ public class CommonHelper {
      * To show the loading dialog on the screen
      */
     public ProgressDialog showDialog(Context context) {
-        dialog = new CustomProgressDialog(context).showProgressDialog("Please Wait ..", "Loading ..");
+        dialog = new CustomProgressDialog(context).showProgressDialog("", "Loading ..");
         if (dialog != null)
             dialog.setCanceledOnTouchOutside(false);
 

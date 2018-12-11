@@ -4,88 +4,68 @@ import android.animation.StateListAnimator;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
 import com.roomtrac.mobile.R;
 
-public class FilterActivity extends AppCompatActivity {
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
-private Button details,list,map,lastactive,newest,rent;
-private RadioGroup viewtype,recent;
+public class FilterActivity extends AppCompatActivity implements DiscreteSeekBar.OnProgressChangeListener {
+
+DiscreteSeekBar seekbar_area,seekbar_rent,seekbar_age;
+AppCompatTextView area,rent,age;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
-        viewtype=findViewById(R.id.viewtype);
-        recent=findViewById(R.id.recent);
-        details=viewtype.findViewById(R.id.rd_bt_1);
-        list=viewtype.findViewById(R.id.rd_bt_2);
-        map=viewtype.findViewById(R.id.rd_bt_3);
+        seekbar_area=findViewById(R.id.seekbar_area);
+        seekbar_rent=findViewById(R.id.rentseekbar);
+        seekbar_age=findViewById(R.id.ageseekbar);
 
-        lastactive=recent.findViewById(R.id.rd_bt_1);
-        newest=recent.findViewById(R.id.rd_bt_2);
-        rent=recent.findViewById(R.id.rd_bt_3);
+        area=findViewById(R.id.seekbar_area_value);
+        rent=findViewById(R.id.seekbar_rent);
+        age=findViewById(R.id.seekbar_age);
 
-        details.setOnClickListener(topButtonsListener);
-        list.setOnClickListener(topButtonsListener);
-        map.setOnClickListener(topButtonsListener);
+        seekbar_area.setOnProgressChangeListener(this);
+        seekbar_rent.setOnProgressChangeListener(this);
+        seekbar_age.setOnProgressChangeListener(this);
+        area.setText("Selected :"+seekbar_area.getProgress());
+        rent.setText("Selected :"+seekbar_rent.getProgress());
+        age.setText("Selected :"+seekbar_age.getProgress());
 
-        lastactive.setOnClickListener(topButtonsListener);
-        newest.setOnClickListener(topButtonsListener);
-        rent.setOnClickListener(topButtonsListener);
 
     }
 
-     View.OnClickListener topButtonsListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            int no_months = 0;
-            if (view.getId() == R.id.rd_bt_1) {
-                no_months = 3;
-                details.setSelected(true);
-                details.setTextColor(Color.WHITE);
-               // list.setStateListAnimator(null);
-                list.setSelected(false);
-                list.setTextColor(Color.BLACK);
-                map.setSelected(false);
-               // map.setStateListAnimator(null);
-                map.setTextColor(Color.BLACK);
 
 
-            } else if (view.getId() == R.id.rd_bt_2) {
-                no_months = 6;
-                list.setSelected(true);
-                list.setTextColor(Color.WHITE);
-                //details.setStateListAnimator(null);
-                details.setSelected(false);
-                details.setTextColor(Color.BLACK);
-                map.setSelected(false);
-               // map.setStateListAnimator(null);
-                map.setTextColor(Color.BLACK);
+    @Override
+    public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
+       switch (seekBar.getId())
+       { case R.id.seekbar_area:
+           area.setText("Selected :"+seekBar.getProgress());
+           break;
+           case R.id.rentseekbar:
+               rent.setText("Selected :"+seekBar.getProgress());
+               break;
+           case R.id.ageseekbar:
+               age.setText("Selected :"+seekBar.getProgress());
+               break;
 
-            } else if (view.getId() == R.id.rd_bt_3) {
-                no_months = 9;
-                map.setSelected(true);
-                map.setTextColor(Color.WHITE);
-                //details.setStateListAnimator(null);
-                details.setSelected(false);
-                details.setTextColor(Color.BLACK);
-                list.setSelected(false);
-               // list.setStateListAnimator(null);
-                list.setTextColor(Color.BLACK);
+       }
 
-            }
+    }
 
+    @Override
+    public void onStartTrackingTouch(DiscreteSeekBar seekBar) {
 
+    }
 
+    @Override
+    public void onStopTrackingTouch(DiscreteSeekBar seekBar) {
 
-
-        }
-
-
-    };
-
+    }
 }

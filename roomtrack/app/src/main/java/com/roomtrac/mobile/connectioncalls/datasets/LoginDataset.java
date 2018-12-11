@@ -61,7 +61,8 @@ public class LoginDataset {
     public String profile_status;
     @SerializedName("posted_on")
     public String posted_on;
-
+    @SerializedName("message")
+    public String message;
     public String getSex ()
     {
         return sex;
@@ -322,10 +323,11 @@ public class LoginDataset {
         this.old_stay_id = old_stay_id;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-
-
-
-
-
+    public String getMessage() {
+        return message;
+    }
 }

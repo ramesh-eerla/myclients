@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.roomtrac.mobile.R;
+import com.roomtrac.mobile.utils.Constants;
 
 import java.util.Map;
 

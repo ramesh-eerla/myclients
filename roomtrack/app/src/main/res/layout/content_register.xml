@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
+android:background="@drawable/login_bg"
     android:fitsSystemWindows="true">
     <ProgressBar
         android:id="@+id/login_progress"
@@ -24,92 +24,156 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/logo_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
+        <ImageView android:src="@drawable/ic_logo_white"
+            android:layout_width="@dimen/dim_200"
+            android:layout_height="@dimen/dim_60"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 
         <!--  Name Label -->
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/califi"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_name"
-                android:layout_width="match_parent"
-                android:fontFamily="@font/califi"
+            android:background="@drawable/shape_edittext"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:src="@drawable/ic_user_icon"/>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_45"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:inputType="textEmailAddress"
+                android:textAppearance="@font/calififont"
                 android:textSize="@dimen/regularfont"
-                 android:hint="Name" />
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/califi"
+                android:hint="Name"
+                android:textColorHint="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/input_name"/>
+        </LinearLayout>
+
 
         <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/califi"
+            android:background="@drawable/shape_edittext"
+            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:textSize="@dimen/regularfont"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/califi"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:src="@drawable/ic_email_icon"/>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_45"
+                android:layout_marginLeft="@dimen/dim_5"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
+                android:textAppearance="@font/calififont"
+                android:textSize="@dimen/regularfont"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/califi"
+                android:hint="Email"
+                android:textColorHint="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/input_email"/>
+        </LinearLayout>
+
 
         <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/shape_edittext"
+            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/califi"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_password"
-                android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:src="@drawable/ic_password_icon"/>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_45"
+                android:layout_marginLeft="@dimen/dim_5"
                 android:inputType="textPassword"
-                android:fontFamily="@font/califi"
+                android:textAppearance="@font/calififont"
                 android:textSize="@dimen/regularfont"
-                android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/califi"
+                android:hint="Password"
+                android:textColorHint="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/input_password"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/shape_edittext"
+            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/califi"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_cnfpassword"
-                android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:src="@drawable/ic_password_icon"/>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_45"
+                android:layout_marginLeft="@dimen/dim_5"
                 android:inputType="textPassword"
-                android:fontFamily="@font/califi"
+                android:textAppearance="@font/calififont"
                 android:textSize="@dimen/regularfont"
-                android:hint="Confirm Password" />
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/califi"
+                android:hint="Confirm Password"
+                android:textColorHint="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/input_cnfpassword"/>
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/shape_edittext"
+            android:orientation="horizontal"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/califi"
-            android:layout_marginBottom="8dp">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/input_phonenumber"
-                android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dim_5"
+                android:src="@drawable/ic_password_icon"/>
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_45"
+                android:layout_marginLeft="@dimen/dim_5"
                 android:inputType="phone"
-                android:fontFamily="@font/califi"
+                android:textAppearance="@font/calififont"
                 android:textSize="@dimen/regularfont"
-                android:hint="Mobile Number"/>
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/califi"
+                android:hint="Mobile Number"
+                android:textColorHint="@android:color/white"
+                android:background="@android:color/transparent"
+                android:id="@+id/input_phonenumber"/>
+        </LinearLayout>
+
 
         <!-- Signup Button -->
         <android.support.v7.widget.AppCompatButton
@@ -120,16 +184,21 @@
             android:layout_marginBottom="24dp"
             android:textAllCaps="false"
             android:padding="12dp"
-            android:fontFamily="@font/califi"
+            android:textColor="@android:color/white"
+            android:background="@color/loginbuttoncolor"
+            android:fontFamily="@font/calififont"
+            android:textStyle="bold"
             android:textSize="@dimen/regularfont"
             android:text="Create Account"/>
 
-        <TextView android:id="@+id/link_login"
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/link_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:fontFamily="@font/califi"
-            android:text="Already a member? Login"
+            android:textColor="@android:color/white"
+            android:text="Already have an account? Sign in"
             android:gravity="center"
             android:textSize="@dimen/regularfont"
             />

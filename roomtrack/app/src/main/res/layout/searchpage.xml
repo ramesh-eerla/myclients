@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <RelativeLayout
+                android:layout_width="@dimen/dim_125"
+                android:layout_height="@dimen/dim_40"
+                android:layout_gravity="center"
+               >
+                <ImageView
+                    android:layout_width="@dimen/dim_95"
+                    android:layout_height="@dimen/dim_35"
+                    android:background="@drawable/ic_logo_white"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/search_area"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dim_2"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:text="you are "
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dim_10"
+                android:id="@+id/filter"
+                android:layout_gravity="center|right|end"
+                android:src="@mipmap/todo_list"/>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/location"
+            android:layout_weight="0.8"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/califi"
+            android:hint="Search location"
+            android:inputType="textCapWords"
+            android:textSize="@dimen/regularfont" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="@dimen/dim_35"
+        android:layout_height="@dimen/dim_35"
+        android:layout_margin="@dimen/dim_8"
+        android:id="@+id/search_button"
+        android:enabled="false"
+        android:background="@drawable/search"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+
+        />
+
+
+</LinearLayout>
