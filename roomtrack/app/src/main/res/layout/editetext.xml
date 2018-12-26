@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:id="@+id/editextlayout"
     android:padding="@dimen/dim_5"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_text"
+        android:fontFamily="@font/califi"
         android:text="@string/hostels"
-        android:textSize="@dimen/font_cart"
-        />
+        android:textSize="@dimen/font_cart" />
     <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_cart"
+        android:fontFamily="@font/califi"
         android:id="@+id/edit_text_value"/>
 
 </LinearLayout>

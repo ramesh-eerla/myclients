@@ -1,6 +1,8 @@
 package com.roomtrac.mobile.activites;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -18,8 +20,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.roomtrac.mobile.R;
@@ -30,6 +35,8 @@ import com.roomtrac.mobile.fragments.AccountSettingsFragement;
 import com.roomtrac.mobile.fragments.EditetProfileFragement;
 import com.roomtrac.mobile.fragments.HomeFragement;
 import com.roomtrac.mobile.fragments.MessageFragment;
+import com.roomtrac.mobile.fragments.MyPropertiesFragement;
+import com.roomtrac.mobile.utils.CommonUtils;
 import com.roomtrac.mobile.utils.Constants;
 
 import java.util.ArrayList;
@@ -52,7 +59,7 @@ public class LandigpageActivity extends AppCompatActivity
     Fragment mFragment;
     FragmentTransaction mFragmentTransaction;
     LoginDataset loginDataset;
-    AppCompatTextView user_name,user_mail;
+    AppCompatTextView user_name,user_mail,page_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,9 @@ public class LandigpageActivity extends AppCompatActivity
         Gson gson = new Gson();
         String json = mPrefs.getString("MyObject", "");
         loginDataset= gson.fromJson(json, LoginDataset.class);
+        CommonUtils.member_id=loginDataset.getMember_id();
         mContext = this;
+        page_type=findViewById(R.id.search_area);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -74,7 +83,7 @@ public class LandigpageActivity extends AppCompatActivity
         mContainer = findViewById(R.id.container);
 
         mFragment= new HomeFragement();
-        attachFragment(mFragment);
+        attachFragment(mFragment,null);
 
         expandableListView = findViewById(R.id.expandableListView);
         prepareMenuData();
@@ -88,9 +97,15 @@ public class LandigpageActivity extends AppCompatActivity
         user_mail.setText(loginDataset.getEmail());
     }
 
-    private void attachFragment(Fragment mFragment) {
+    private void attachFragment(Fragment mFragment,Bundle bundle) {
         mFragmentManager = getSupportFragmentManager();
         mFragmentTransaction = mFragmentManager.beginTransaction();
+        if(bundle!=null)
+        mFragment.setArguments(bundle);
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
         mFragmentTransaction.replace(R.id.container, mFragment);
         mFragmentTransaction.addToBackStack(null);
         mFragmentTransaction.commit();
@@ -109,13 +124,23 @@ public class LandigpageActivity extends AppCompatActivity
                         MenuModel model = headerList.get(groupPosition);
                         switch (model.menuid) {
                             case Constants.HOME:
-                                attachFragment(new HomeFragement());
+                                page_type.setText("");
+                                attachFragment(new HomeFragement(),null);
                                 break;
                             case Constants.BOOKMARKS:
-                                attachFragment(new HomeFragement());
+                                page_type.setText("Bookmarks");
+                                Bundle bundle=new Bundle();
+                                bundle.putInt("TYPE",Constants.BOOKMARKS);
+                                attachFragment(new MyPropertiesFragement(),bundle);
                                 break;
                             case Constants.MY_PROPERTIES:
-                                attachFragment(new HomeFragement());
+                                page_type.setText("My Properties");
+                                Bundle bundl=new Bundle();
+                                bundl.putInt("TYPE",Constants.MY_PROPERTIES);
+                                attachFragment(new MyPropertiesFragement(),bundl);
+                                break;
+                            case Constants.NEAR_ME:
+                                startActivity(new Intent(mContext,MapsActivity.class));
                                 break;
                         }
                         onBackPressed();
@@ -134,22 +159,24 @@ public class LandigpageActivity extends AppCompatActivity
                     MenuModel model = childList.get(headerList.get(groupPosition)).get(childPosition);
                     switch (model.menuid) {
                         case Constants.VIEWMESSAGE:
-                            attachFragment(new HomeFragement());
+                            attachFragment(new HomeFragement(),null);
                             break;
                         case Constants.SENTMESSAGES:
-                            attachFragment(new HomeFragement());
+                            attachFragment(new HomeFragement(),null);
                             break;
                         case Constants.FAVOURITES:
-                            attachFragment(new HomeFragement());
+                            attachFragment(new HomeFragement(),null);
                             break;
                         case Constants.ACCOUNTSETTINGS:
-                            attachFragment(new AccountSettingsFragement());
+                            page_type.setText("Change Password");
+                            attachFragment(new AccountSettingsFragement(),null);
                             break;
                         case Constants.EDIT_PROFILE:
-                            attachFragment(new EditetProfileFragement());
+                            page_type.setText("Edit Profile");
+                            attachFragment(new EditetProfileFragement(),null);
                             break;
                         case Constants.VIEW_PROFFILE:
-                            attachFragment(new HomeFragement());
+                            attachFragment(new HomeFragement(),null);
                             break;
                     }
 
@@ -166,6 +193,7 @@ public class LandigpageActivity extends AppCompatActivity
         if (menuModel.hasChildren) {
             childList.put(menuModel, null);
         }
+
         menuModel = new MenuModel("Messages", true, true, Constants.MESSAGE); //Menu of Android Tutorial. No sub menus
         headerList.add(menuModel);
         List<MenuModel> childModelsList = new ArrayList<>();
@@ -183,7 +211,7 @@ public class LandigpageActivity extends AppCompatActivity
             childList.put(menuModel, childModelsList);
         }
 
-        menuModel = new MenuModel("Bookmarks", false, false, Constants.BOOKMARKS); //Menu of Java Tutorials
+        menuModel = new MenuModel("Bookmarks", true, false, Constants.BOOKMARKS); //Menu of Java Tutorials
         headerList.add(menuModel);
         if (menuModel.hasChildren) {
             //Log.d("API123","here");
@@ -211,6 +239,12 @@ public class LandigpageActivity extends AppCompatActivity
         if (menuModel.hasChildren) {
             childList.put(menuModel, null);
         }
+        menuModel = new MenuModel("Near Me", true, false, Constants.NEAR_ME); //Menu of Python Tutorials
+        headerList.add(menuModel);
+
+        if (menuModel.hasChildren) {
+            childList.put(menuModel, null);
+        }
     }
 
     @Override
@@ -219,7 +253,48 @@ public class LandigpageActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            FragmentManager manager = getSupportFragmentManager();
+
+            if (manager.getBackStackEntryCount() > 1) {
+                // If there are back-stack entries, leave the FragmentActivity
+                // implementation take care of them.
+                manager.popBackStack();
+
+            } else {
+                // Otherwise, ask user if he wants to leave :)
+                new AlertDialog.Builder(this)
+                        .setTitle("Really Exit?")
+                        .setMessage("Are you sure you want to exit?")
+                        /*.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+
+                        Window view = ((AlertDialog)dialog).getWindow();
+
+                        Button negButton = ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+                        negButton.setBackgroundColor(getResources().getColor(R.color.rooms));
+                        negButton.setTextColor(getResources().getColor(android.R.color.white));
+
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                        );
+                        params.setMargins(20,0,0,0);
+                        negButton.setLayoutParams(params);
+                    }
+                })*/
+                        .setNeutralButton("No", null)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                // MainActivity.super.onBackPressed();
+                                finish();
+                                moveTaskToBack(true);
+                            }
+                        }).create().show();
+            }
+           // super.onBackPressed();
         }
     }
 

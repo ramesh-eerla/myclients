@@ -1,5 +1,7 @@
 package com.roomtrac.mobile.services;
 
+import com.roomtrac.mobile.utils.Constants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +32,80 @@ public class RequestParams {
         }
     }
 
-      /**
+
+    public class ChangePassword {
+        String memberid, oldpassword,newpassword;
+
+        /**
+         * @Class Logindata
+         * This class is used for Login with email and password
+         * @neededparam String email,password;
+         */
+
+        public ChangePassword updatepwd(String member_id, String old_password,String new_pwd) {
+            this.memberid = member_id;
+            this.oldpassword = old_password;
+            this.newpassword=new_pwd;
+
+            return ChangePassword.this;
+        }
+    }
+
+    public class ForgetPassword {
+        String forgotpassword;
+
+        /**
+         * @Class Logindata
+         * This class is used for Login with email and password
+         * @neededparam String email,password;
+         */
+
+        public ForgetPassword forgetpwd(String forgotpassword) {
+            this.forgotpassword = forgotpassword;
+
+
+            return ForgetPassword.this;
+        }
+    }
+
+
+    public class SendMail {
+        String userloginid,userloginame,member_details_id,sendemail,first_name,member_id,messagecontent;
+
+        /**
+         * @Class Logindata
+         * This class is used for Login with email and password
+         * @neededparam String email,password;
+         */
+
+        public SendMail getdatasendmail(String userloginid,String userloginame,String member_details_id,String sendemail,String first_name,String member_id,String messagecontent) {
+            this.userloginid = userloginid;
+            this.userloginame=userloginame;
+            this.member_details_id=member_details_id;
+            this.sendemail=sendemail;
+            this.first_name=first_name;
+            this.member_id=member_id;
+            this.messagecontent=messagecontent;
+
+
+            return SendMail.this;
+        }
+    }
+
+public class BookMarkset{
+    String userid,bookmarid;
+
+
+        public BookMarkset bookMarkset(String userid,String bookmarid){
+            this.bookmarid=bookmarid;
+            this.userid=userid;
+
+            return BookMarkset.this;
+        }
+}
+
+
+    /**
      * @Class Register
      * This class is used for Registering user with requirdData
      * @neededparam String name,email,password,mobilenumber;
@@ -46,6 +121,18 @@ public class RequestParams {
             this.password = password;
             this.mobilenumber = mobilenumber;
                        return Register.this;
+        }
+    }
+    public class MyProperties {
+        String member_id,memberid;
+
+        public MyProperties getproperties(String member_id,int type) {
+if(type==Constants.MY_PROPERTIES)
+            this.member_id = member_id;
+else
+    this.memberid=member_id;
+
+            return MyProperties.this;
         }
     }
 
@@ -70,24 +157,19 @@ public class RequestParams {
      * Boolean AutoLogin;
      */
     public class SearchTypes {
-       /* String state_id,city_id,location_id,search_type;*/
-        int search_type;
-        /*int rent_id,hostel_id;*/
+        String state_id,city_id,location_id;
+        int rent_id,hostel_id;
 
         public SearchTypes setsearch(String state_id,String city_id,String location_id,int rent_id) {
 
-            if(rent_id==5)
-                this.search_type=1;
-            /*else
-                this.search_type=rent_id;*/
 
-            this.search_type = rent_id;
-           /* this.city_id=city_id;
+            this.city_id=city_id;
             this.location_id=location_id;
+            this.state_id=state_id;
             if(rent_id==5)
                 this.hostel_id=1;
             else
-                this.rent_id=rent_id;*/
+                this.rent_id=rent_id;
             return SearchTypes.this;
         }
     }
@@ -262,7 +344,7 @@ public class RequestParams {
     public class  Room_POST{
         //qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api/postroomproperty
         //date dd/mm/yyyy
-        String member_id,rent_id,roomtag,roomtype,food_type,furnish_type,roomfacility,areasqfeet,
+        String member_id,rent_id,roomtag,roomtype,food_type,furnish_type,facility,areasqfeet,
                 rent_per_month,members_per_room,vacency_for,gender,min_age,max_age,
                 phone_number,availibility_date,country,state,city,location,descaboutroom,uploadsphotos;
 
@@ -275,7 +357,7 @@ public class RequestParams {
             this.roomtype=hosteltype;
             this.food_type=hostelfood_type;
             this.furnish_type=hostelfurnish_type;
-            this.roomfacility=hostelfacility;
+            this.facility=hostelfacility;
             this.areasqfeet=hostelareasqfeet;
             this.rent_per_month=hostelrent_per_month;
             this.members_per_room=hostelmembers_per_room;

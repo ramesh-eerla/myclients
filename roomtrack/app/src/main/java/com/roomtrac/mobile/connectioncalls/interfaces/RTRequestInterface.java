@@ -8,6 +8,8 @@ import com.roomtrac.mobile.connectioncalls.datasets.Countriesmodel;
 import com.roomtrac.mobile.connectioncalls.datasets.Dataset;
 import com.roomtrac.mobile.connectioncalls.datasets.DetailsDataset;
 import com.roomtrac.mobile.connectioncalls.datasets.LoginDataset;
+import com.roomtrac.mobile.connectioncalls.datasets.PlacesPOJO;
+import com.roomtrac.mobile.connectioncalls.datasets.ResultDistanceMatrix;
 import com.roomtrac.mobile.connectioncalls.datasets.RetrofitResponse;
 import com.roomtrac.mobile.services.RequestParams;
 
@@ -41,7 +43,10 @@ public interface RTRequestInterface {
     Call<RetrofitResponse> user_Register(@Path("methodname") String methodname, @Body RequestParams.Register task );
 
     @POST("{methodname}")
-    Call<List<DetailsDataset>> searchrooms(@Path("methodname") String methodname, @Body RequestParams.SearchTypes task);
+    Call<Object> searchrooms(@Path("methodname") String methodname, @Body RequestParams.SearchTypes task);
+
+    @POST("{methodname}")
+    Call<Object> getMy_Properties(@Path("methodname") String methodname, @Body RequestParams.MyProperties task);
 
     @POST("{methodname}")
     Call<List<Dataset>> searchtypes(@Path("methodname") String methodname, @Body RequestParams.SearchValues task);
@@ -56,8 +61,37 @@ public interface RTRequestInterface {
     Call<List<Countriesmodel>> getareadata(@Path("methodname") String methodname, @QueryMap Map<String, String> options);
 
 
-    @POST("{version}/{methodname}")
-    Call<RetrofitResponse> retrofitCall(@Path("version") String version, @Path("methodname") String methodname, @Body BasicRequestParams task);
+    @POST("{methodname}")
+    Call<RetrofitResponse> submitRoom( @Path("methodname") String methodname, @Body RequestParams.Room_POST task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> submitRommate( @Path("methodname") String methodname, @Body RequestParams.Roommate_POST task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> submitHome( @Path("methodname") String methodname, @Body RequestParams.Home_POST task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> submitPayinggust( @Path("methodname") String methodname, @Body RequestParams.PayingGust_POST task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> submitHostel( @Path("methodname") String methodname, @Body RequestParams.Hostel_POST task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> updateuserdata( @Path("methodname") String methodname, @Body RequestParams.PersonalProfile task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> updatePassword( @Path("methodname") String methodname, @Body RequestParams.ChangePassword task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> sendmail( @Path("methodname") String methodname, @Body RequestParams.SendMail task);
+
+    @POST("{methodname}")
+    Call<RetrofitResponse> bookmars( @Path("methodname") String methodname, @Body RequestParams.BookMarkset task);
+
+    @GET("place/nearbysearch/json?")
+    Call<PlacesPOJO.Root> doPlaces(@Query(value = "type", encoded = true) String type, @Query(value = "location", encoded = true) String location, @Query(value = "name", encoded = true) String name, @Query(value = "opennow", encoded = true) boolean opennow, @Query(value = "rankby", encoded = true) String rankby, @Query(value = "key", encoded = true) String key);
 
 
+    @GET("distancematrix/json") // origins/destinations:  LatLng as string
+    Call<ResultDistanceMatrix> getDistance(@Query("key") String key, @Query("origins") String origins, @Query("destinations") String destinations);
 }

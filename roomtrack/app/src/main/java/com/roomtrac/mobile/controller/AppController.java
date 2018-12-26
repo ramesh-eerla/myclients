@@ -18,6 +18,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.roomtrac.mobile.R;
 import com.roomtrac.mobile.connectioncalls.interfaces.RTRequestInterface;
 
@@ -147,12 +149,14 @@ public class AppController extends Application {
                     .addInterceptor(logging)
                     .build();
 
-
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(mContext.getResources().getString(
                         R.string.base_URL) + "/")
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         final RTRequestInterface mInterfaceService = retrofit.create(RTRequestInterface.class);

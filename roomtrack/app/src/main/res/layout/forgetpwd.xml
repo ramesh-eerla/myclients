@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorDark">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/approval_footer_textheading"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:foregroundGravity="center"
+                android:fontFamily="@font/califi"
+                android:gravity="center"
+                android:text="Forgot password"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#d2d2d2" />
+        </RelativeLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_45"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/califi"
+            android:hint="Please enter your registered emailid"
+            android:id="@+id/emal_text"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:id="@+id/foot_relaytivelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_40"
+                android:layout_weight="0.5"
+                android:layout_margin="@dimen/dim_10"
+                android:padding="5dp"
+                android:text="Cancel"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@color/hostel"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_40"
+                android:layout_weight="0.5"
+                android:layout_margin="@dimen/dim_10"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:background="@color/colorAccent"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

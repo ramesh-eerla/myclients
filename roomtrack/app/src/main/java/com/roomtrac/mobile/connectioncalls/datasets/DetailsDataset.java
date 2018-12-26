@@ -4,121 +4,108 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class DetailsDataset {
-
-    @SerializedName("first_name")
-    @Expose
-    private String firstName;
-    @SerializedName("last_name")
-    @Expose
-    private String lastName;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("age")
-    @Expose
-    private String age;
     @SerializedName("members_detail_id")
     @Expose
-    private String membersDetailId;
+    private String members_detail_id;
     @SerializedName("member_id")
     @Expose
-    private String memberId;
+    private String member_id;
     @SerializedName("rent_id")
     @Expose
-    private String rentId;
+    private String rent_id;
     @SerializedName("hostel_id")
     @Expose
-    private String hostelId;
+    private String hostel_id;
     @SerializedName("room_type_id")
     @Expose
-    private String roomTypeId;
+    private String room_type_id;
     @SerializedName("facility")
     @Expose
     private String facility;
     @SerializedName("food_type")
     @Expose
-    private String foodType;
+    private String food_type;
     @SerializedName("furnish_type")
     @Expose
-    private String furnishType;
+    private String furnish_type;
     @SerializedName("area_sqft")
     @Expose
-    private String areaSqft;
+    private String area_sqft;
     @SerializedName("home_appt_nature_id")
     @Expose
-    private String homeApptNatureId;
+    private String home_appt_nature_id;
     @SerializedName("tag_line")
     @Expose
-    private String tagLine;
+    private String tag_line;
     @SerializedName("rent_per_month")
     @Expose
-    private String rentPerMonth;
+    private String rent_per_month;
     @SerializedName("home_appt_type_id")
     @Expose
-    private String homeApptTypeId;
+    private String home_appt_type_id;
     @SerializedName("home_appt_preferences_id")
     @Expose
-    private String homeApptPreferencesId;
+    private String home_appt_preferences_id;
     @SerializedName("hostel_type_id")
     @Expose
-    private String hostelTypeId;
+    private String hostel_type_id;
     @SerializedName("hostel_nature_id")
     @Expose
-    private String hostelNatureId;
+    private String hostel_nature_id;
     @SerializedName("members_per_room")
     @Expose
-    private String membersPerRoom;
+    private String members_per_room;
     @SerializedName("vacency_for")
     @Expose
-    private String vacencyFor;
+    private String vacency_for;
     @SerializedName("sex")
     @Expose
     private String sex;
     @SerializedName("min_age")
     @Expose
-    private String minAge;
+    private String min_age;
     @SerializedName("max_age")
     @Expose
-    private String maxAge;
+    private String max_age;
     @SerializedName("availibility_date")
     @Expose
-    private String availibilityDate;
+    private String availibility_date;
     @SerializedName("availibility_month")
     @Expose
-    private String availibilityMonth;
+    private String availibility_month;
     @SerializedName("availibility_year")
     @Expose
-    private String availibilityYear;
+    private String availibility_year;
     @SerializedName("country_id")
     @Expose
-    private String countryId;
+    private String country_id;
     @SerializedName("state_id")
     @Expose
-    private String stateId;
+    private String state_id;
     @SerializedName("city_id")
     @Expose
-    private String cityId;
+    private String city_id;
     @SerializedName("location_id")
     @Expose
-    private String locationId;
+    private String location_id;
     @SerializedName("about_room")
     @Expose
-    private String aboutRoom;
+    private String about_room;
     @SerializedName("about_yourself")
     @Expose
-    private String aboutYourself;
+    private String about_yourself;
     @SerializedName("home_town")
     @Expose
-    private String homeTown;
+    private String home_town;
     @SerializedName("phone_number")
     @Expose
-    private Object phoneNumber;
+    private String phone_number;
     @SerializedName("user_uploaded")
     @Expose
-    private String userUploaded;
+    private String user_uploaded;
     @SerializedName("last_activity")
     @Expose
-    private String lastActivity;
+    private String last_activity;
     @SerializedName("status")
     @Expose
     private String status;
@@ -127,31 +114,47 @@ public class DetailsDataset {
     private String flag;
     @SerializedName("posted_on")
     @Expose
-    private String postedOn;
-    @SerializedName("locationame")
+    private String posted_on;
+    @SerializedName("memberid")
     @Expose
-    private String locationame;
-    @SerializedName("cityname")
+    private String memberid;
+    @SerializedName("state_name")
     @Expose
-    private String cityname;
-    @SerializedName("statename")
+    private String state_name;
+    @SerializedName("city_name")
     @Expose
-    private String statename;
+    private String city_name;
+    @SerializedName("location_name")
+    @Expose
+    private String location_name;
+    @SerializedName("country_name")
+    @Expose
+    private String country_name;
 
-    public String getFirstName() {
-        return firstName;
+    @SerializedName("first_name")
+    @Expose
+    private String first_name;
+    @SerializedName("last_name")
+    @Expose
+    private String last_name;
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getEmail() {
@@ -162,52 +165,44 @@ public class DetailsDataset {
         this.email = email;
     }
 
-    public String getAge() {
-        return age;
+    public String getMembers_detail_id() {
+        return members_detail_id;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setMembers_detail_id(String members_detail_id) {
+        this.members_detail_id = members_detail_id;
     }
 
-    public String getMembersDetailId() {
-        return membersDetailId;
+    public String getMember_id() {
+        return member_id;
     }
 
-    public void setMembersDetailId(String membersDetailId) {
-        this.membersDetailId = membersDetailId;
+    public void setMember_id(String member_id) {
+        this.member_id = member_id;
     }
 
-    public String getMemberId() {
-        return memberId;
+    public String getRent_id() {
+        return rent_id;
     }
 
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
+    public void setRent_id(String rent_id) {
+        this.rent_id = rent_id;
     }
 
-    public String getRentId() {
-        return rentId;
+    public String getHostel_id() {
+        return hostel_id;
     }
 
-    public void setRentId(String rentId) {
-        this.rentId = rentId;
+    public void setHostel_id(String hostel_id) {
+        this.hostel_id = hostel_id;
     }
 
-    public String getHostelId() {
-        return hostelId;
+    public String getRoom_type_id() {
+        return room_type_id;
     }
 
-    public void setHostelId(String hostelId) {
-        this.hostelId = hostelId;
-    }
-
-    public String getRoomTypeId() {
-        return roomTypeId;
-    }
-
-    public void setRoomTypeId(String roomTypeId) {
-        this.roomTypeId = roomTypeId;
+    public void setRoom_type_id(String room_type_id) {
+        this.room_type_id = room_type_id;
     }
 
     public String getFacility() {
@@ -218,100 +213,100 @@ public class DetailsDataset {
         this.facility = facility;
     }
 
-    public String getFoodType() {
-        return foodType;
+    public String getFood_type() {
+        return food_type;
     }
 
-    public void setFoodType(String foodType) {
-        this.foodType = foodType;
+    public void setFood_type(String food_type) {
+        this.food_type = food_type;
     }
 
-    public String getFurnishType() {
-        return furnishType;
+    public String getFurnish_type() {
+        return furnish_type;
     }
 
-    public void setFurnishType(String furnishType) {
-        this.furnishType = furnishType;
+    public void setFurnish_type(String furnish_type) {
+        this.furnish_type = furnish_type;
     }
 
-    public String getAreaSqft() {
-        return areaSqft;
+    public String getArea_sqft() {
+        return area_sqft;
     }
 
-    public void setAreaSqft(String areaSqft) {
-        this.areaSqft = areaSqft;
+    public void setArea_sqft(String area_sqft) {
+        this.area_sqft = area_sqft;
     }
 
-    public String getHomeApptNatureId() {
-        return homeApptNatureId;
+    public String getHome_appt_nature_id() {
+        return home_appt_nature_id;
     }
 
-    public void setHomeApptNatureId(String homeApptNatureId) {
-        this.homeApptNatureId = homeApptNatureId;
+    public void setHome_appt_nature_id(String home_appt_nature_id) {
+        this.home_appt_nature_id = home_appt_nature_id;
     }
 
-    public String getTagLine() {
-        return tagLine;
+    public String getTag_line() {
+        return tag_line;
     }
 
-    public void setTagLine(String tagLine) {
-        this.tagLine = tagLine;
+    public void setTag_line(String tag_line) {
+        this.tag_line = tag_line;
     }
 
-    public String getRentPerMonth() {
-        return rentPerMonth;
+    public String getRent_per_month() {
+        return rent_per_month;
     }
 
-    public void setRentPerMonth(String rentPerMonth) {
-        this.rentPerMonth = rentPerMonth;
+    public void setRent_per_month(String rent_per_month) {
+        this.rent_per_month = rent_per_month;
     }
 
-    public String getHomeApptTypeId() {
-        return homeApptTypeId;
+    public String getHome_appt_type_id() {
+        return home_appt_type_id;
     }
 
-    public void setHomeApptTypeId(String homeApptTypeId) {
-        this.homeApptTypeId = homeApptTypeId;
+    public void setHome_appt_type_id(String home_appt_type_id) {
+        this.home_appt_type_id = home_appt_type_id;
     }
 
-    public String getHomeApptPreferencesId() {
-        return homeApptPreferencesId;
+    public String getHome_appt_preferences_id() {
+        return home_appt_preferences_id;
     }
 
-    public void setHomeApptPreferencesId(String homeApptPreferencesId) {
-        this.homeApptPreferencesId = homeApptPreferencesId;
+    public void setHome_appt_preferences_id(String home_appt_preferences_id) {
+        this.home_appt_preferences_id = home_appt_preferences_id;
     }
 
-    public String getHostelTypeId() {
-        return hostelTypeId;
+    public String getHostel_type_id() {
+        return hostel_type_id;
     }
 
-    public void setHostelTypeId(String hostelTypeId) {
-        this.hostelTypeId = hostelTypeId;
+    public void setHostel_type_id(String hostel_type_id) {
+        this.hostel_type_id = hostel_type_id;
     }
 
-    public String getHostelNatureId() {
-        return hostelNatureId;
+    public String getHostel_nature_id() {
+        return hostel_nature_id;
     }
 
-    public void setHostelNatureId(String hostelNatureId) {
-        this.hostelNatureId = hostelNatureId;
+    public void setHostel_nature_id(String hostel_nature_id) {
+        this.hostel_nature_id = hostel_nature_id;
     }
 
-    public String getMembersPerRoom() {
-        return membersPerRoom;
+    public String getMembers_per_room() {
+        return members_per_room;
     }
 
-    public void setMembersPerRoom(String membersPerRoom) {
-        this.membersPerRoom = membersPerRoom;
+    public void setMembers_per_room(String members_per_room) {
+        this.members_per_room = members_per_room;
     }
 
-    public String getVacencyFor() {
-        return vacencyFor;
+    public String getVacency_for() {
+        return vacency_for;
     }
 
-    public void setVacencyFor(String vacencyFor) {
-        this.vacencyFor = vacencyFor;
+    public void setVacency_for(String vacency_for) {
+        this.vacency_for = vacency_for;
     }
 
     public String getSex() {
@@ -322,124 +317,123 @@ public class DetailsDataset {
         this.sex = sex;
     }
 
-    public String getMinAge() {
-        return minAge;
+    public String getMin_age() {
+        return min_age;
     }
 
-    public void setMinAge(String minAge) {
-        this.minAge = minAge;
+    public void setMin_age(String min_age) {
+        this.min_age = min_age;
     }
 
-    public String getMaxAge() {
-        return maxAge;
+    public String getMax_age() {
+        return max_age;
     }
 
-    public void setMaxAge(String maxAge) {
-        this.maxAge = maxAge;
+    public void setMax_age(String max_age) {
+        this.max_age = max_age;
     }
 
-    public String getAvailibilityDate() {
-        return availibilityDate;
+    public String getAvailibility_date() {
+        return availibility_date;
     }
 
-    public void setAvailibilityDate(String availibilityDate) {
-        this.availibilityDate = availibilityDate;
+    public void setAvailibility_date(String availibility_date) {
+        this.availibility_date = availibility_date;
     }
 
-    public String getAvailibilityMonth() {
-        return availibilityMonth;
+    public String getAvailibility_month() {
+        return availibility_month;
     }
 
-    public void setAvailibilityMonth(String availibilityMonth) {
-        this.availibilityMonth = availibilityMonth;
+    public void setAvailibility_month(String availibility_month) {
+        this.availibility_month = availibility_month;
     }
 
-    public String getAvailibilityYear() {
-        return availibilityYear;
+    public String getAvailibility_year() {
+        return availibility_year;
     }
 
-    public void setAvailibilityYear(String availibilityYear) {
-        this.availibilityYear = availibilityYear;
+    public void setAvailibility_year(String availibility_year) {
+        this.availibility_year = availibility_year;
     }
 
-    public String getCountryId() {
-        return countryId;
+    public String getCountry_id() {
+        return country_id;
     }
 
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
+    public void setCountry_id(String country_id) {
+        this.country_id = country_id;
     }
 
-    public String getStateId() {
-        return stateId;
+    public String getState_id() {
+        return state_id;
     }
 
-    public void setStateId(String stateId) {
-        this.stateId = stateId;
+    public void setState_id(String state_id) {
+        this.state_id = state_id;
     }
 
-    public String getCityId() {
-        return cityId;
+    public String getCity_id() {
+        return city_id;
     }
 
-    public void setCityId(String cityId) {
-        this.cityId = cityId;
+    public void setCity_id(String city_id) {
+        this.city_id = city_id;
     }
 
-    public String getLocationId() {
-        return locationId;
+    public String getLocation_id() {
+        return location_id;
     }
 
-    public void setLocationId(String locationId) {
-        this.locationId = locationId;
+    public void setLocation_id(String location_id) {
+        this.location_id = location_id;
     }
 
-    public String getAboutRoom() {
-        return aboutRoom;
+    public String getAbout_room() {
+        return about_room;
     }
 
-    public void setAboutRoom(String aboutRoom) {
-        this.aboutRoom = aboutRoom;
+    public void setAbout_room(String about_room) {
+        this.about_room = about_room;
     }
 
-    public String getAboutYourself() {
-        return aboutYourself;
+    public String getAbout_yourself() {
+        return about_yourself;
     }
 
-    public void setAboutYourself(String aboutYourself) {
-        this.aboutYourself = aboutYourself;
+    public void setAbout_yourself(String about_yourself) {
+        this.about_yourself = about_yourself;
     }
 
-    public String getHomeTown() {
-        return homeTown;
+    public String getHome_town() {
+        return home_town;
     }
 
-    public void setHomeTown(String homeTown) {
-        this.homeTown = homeTown;
+    public void setHome_town(String home_town) {
+        this.home_town = home_town;
     }
 
-    public Object getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone_number() {
+        return phone_number;
+    }
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public void setPhoneNumber(Object phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getUser_uploaded() {
+        return user_uploaded;
     }
 
-    public String getUserUploaded() {
-        return userUploaded;
+    public void setUser_uploaded(String user_uploaded) {
+        this.user_uploaded = user_uploaded;
     }
 
-    public void setUserUploaded(String userUploaded) {
-        this.userUploaded = userUploaded;
+    public String getLast_activity() {
+        return last_activity;
     }
 
-    public String getLastActivity() {
-        return lastActivity;
-    }
-
-    public void setLastActivity(String lastActivity) {
-        this.lastActivity = lastActivity;
+    public void setLast_activity(String last_activity) {
+        this.last_activity = last_activity;
     }
 
     public String getStatus() {
@@ -458,36 +452,51 @@ public class DetailsDataset {
         this.flag = flag;
     }
 
-    public String getPostedOn() {
-        return postedOn;
+    public String getPosted_on() {
+        return posted_on;
     }
 
-    public void setPostedOn(String postedOn) {
-        this.postedOn = postedOn;
+    public void setPosted_on(String posted_on) {
+        this.posted_on = posted_on;
     }
 
-    public String getLocationame() {
-        return locationame;
+    public String getLocation_name() {
+        return location_name;
     }
 
-    public void setLocationame(String locationame) {
-        this.locationame = locationame;
+    public void setLocation_name(String location_name) {
+        this.location_name = location_name;
     }
 
-    public String getCityname() {
-        return cityname;
+    public String getCity_name() {
+        return city_name;
     }
 
-    public void setCityname(String cityname) {
-        this.cityname = cityname;
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
     }
 
-    public String getStatename() {
-        return statename;
+    public String getState_name() {
+        return state_name;
     }
 
-    public void setStatename(String statename) {
-        this.statename = statename;
+    public void setState_name(String state_name) {
+        this.state_name = state_name;
     }
 
+    public String getCountry_name() {
+        return country_name;
+    }
+
+    public void setCountry_name(String country_name) {
+        this.country_name = country_name;
+    }
+
+    public String getMemberid() {
+        return memberid;
+    }
+
+    public void setMemberid(String memberid) {
+        this.memberid = memberid;
+    }
 }

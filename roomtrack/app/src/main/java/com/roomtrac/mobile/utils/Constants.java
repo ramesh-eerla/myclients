@@ -7,13 +7,20 @@ package com.roomtrac.mobile.utils;
 public class Constants {
 
     public static final String GmailOauthid="623136802545-gdrvdqv1mtij2eh02b4phafur5r3735u.apps.googleusercontent.com";
+    public static final String TAG_SUCCESS = "Success" ;
+    public static final String MAIN_URL="http://sbsroomtrac.wizardtechnologiesprivatelimited.com";
+    public static final String IMAGE_URL=MAIN_URL+"/propertyupload.php";
+
+    public static final String BASEURL=MAIN_URL+"/apidata/api/Api/";
+
+    /*public static final String BASEURL="http://qaroomtrac.wizardtechnologiesprivatelimited.com/apidata/api/Api/";*/
     public static String[] month = {"Month", "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"};
     public static String[] days_31 = {"Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
     public static String[] days_30 = {"Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"};
     public static String[] days_29 = {"Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29"};
     public static String[] days_28 = {"Day", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28"};
-    public static final int ST_LAND =200 ;
-    public static final int ST_OTHER =201 ;
+    public static int POST=100;
+    public static int GET=101;
     public static String ST_KEY="KEY";
     public static String ST_VALUE="VALUE";
     public static final int ST_NONETWORK=505;
@@ -47,8 +54,8 @@ public class Constants {
     public static final String TWO_ITEMS="TWO_ITEMS";
     public static final String SECOND_ITEM="SECOND_ITEM";
 
-    public static final String ST_USERMAIL="UserEmail";
-    public static final String LOGOUT_KEY="Logout";
+    public static final int RT_FORGETPWD=250;
+    public static final int RT_SENDMAIL=251;
     public static final String EXIT_KEY="Exit";
 
     public static final String RT_SEACH_TYPE="searchtype";
@@ -78,6 +85,7 @@ public class Constants {
     public static final int EDIT_PROFILE=308;
     public static final int VIEW_PROFFILE=309;
     public static final int MY_PROPERTIES=310;
+    public static final int NEAR_ME=311;
 
 
 }

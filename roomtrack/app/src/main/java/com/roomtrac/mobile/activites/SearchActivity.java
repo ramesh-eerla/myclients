@@ -2,7 +2,6 @@ package com.roomtrac.mobile.activites;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -17,19 +16,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ListAdapter;
-import android.widget.TextView;
 
+import com.google.gson.internal.LinkedTreeMap;
 import com.roomtrac.mobile.R;
 import com.roomtrac.mobile.adapters.SearchRecyclerViewAdapter;
 import com.roomtrac.mobile.connectioncalls.connections.RT_RetrofitSevicecall;
 import com.roomtrac.mobile.connectioncalls.datasets.Dataset;
 import com.roomtrac.mobile.connectioncalls.datasets.DetailsDataset;
+import com.roomtrac.mobile.interfaces.OnItemClickListener;
 import com.roomtrac.mobile.interfaces.ResponceCallback;
 import com.roomtrac.mobile.services.RequestParams;
+import com.roomtrac.mobile.utils.CommonUtils;
 import com.roomtrac.mobile.utils.Constants;
+import com.roomtrac.mobile.utils.JSONUtils;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -51,7 +51,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private int search_type;
     private ArrayList<String> list,data;
     private String list_data;
-    private String[] tabtitle={"Rooms","Appartments","Roommates","Paying Guest","Hostel"};
+    private SearchRecyclerViewAdapter adapter;
+    private String[] tabtitle={"Rooms","Apartments","Roommates","Paying Guest","Hostel"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         mRt_retrofitSevicecall=new RT_RetrofitSevicecall(mContext);
         myOnClickListener = new MyOnClickListener(mContext);
         setContentView(R.layout.searchpage);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -105,13 +106,49 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                                     long id) {
                 search_button.setEnabled(true);
                 list_data=list.get(pos);
-               //
+                CommonUtils.location_data=list.get(pos);
+
             }
         });
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(CommonUtils.applyfilter){
+            loadsearchlist(CommonUtils.location_data);
+        }
+    }
+
+    public void loadSearchList(Object responce)  {
+
+    List<LinkedTreeMap> data=(List<LinkedTreeMap>)responce;
+    List<DetailsDataset> detailsDataset=JSONUtils.getSearchdata(data);
+     adapter=new SearchRecyclerViewAdapter(detailsDataset,mContext, search_type);
+    searchview.setAdapter(adapter);
+    adapter.setOnItemClickListener(new OnItemClickListener() {
+        @Override
+        public void onItemClick(int position, ArrayList<DetailsDataset> landingPageDataset,String type) {
+            CommonUtils.forget_anv=Constants.RT_SENDMAIL;
+            CommonUtils.mSelecteditemDetails=landingPageDataset.get(position);
+            mContext.startActivity(new Intent(mContext, Forgetpassword.class));
+        }
+
+        @Override
+        public void onItemClick_(int position, ArrayList<DetailsDataset> landingPageDataset) {
+            CommonUtils.mSelecteditemDetails=landingPageDataset.get(position);
+startActivity(new Intent(mContext,PropertyDetailsActivity.class));
+        }
+
+        @Override
+        public void onItemClick_dataset(int position, ArrayList<Dataset> landingPageDataset) {
+
+        }
+    });
+
+}
     private void loadLocation(String s) {
         bundle=getIntent().getExtras();
         search_type=bundle.getInt(Constants.RT_SEACH_TYPE);
@@ -120,11 +157,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void loadsearchlist(String list_data) {
+    private void loadsearchlist(String listData) {
         bundle=getIntent().getExtras();
         search_type=bundle.getInt(Constants.RT_SEACH_TYPE);
-        if(list_data!=null&&!list_data.equalsIgnoreCase("")){
-            String[] data=list_data.split(",");
+        CommonUtils.searchtype=search_type;
+        if(listData!=null&&!listData.equalsIgnoreCase("")){
+            String[] data=listData.split(",");
         RequestParams.SearchTypes searchTypes= new RequestParams().new SearchTypes().setsearch(data[0],data[1],data[2],search_type);
         if(search_type==5)
             mRt_retrofitSevicecall.searchPost(Constants.RT_SEARCH_HOSTEL,searchTypes);
@@ -175,8 +213,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 searcheditbox.showDropDown();
                 break;
             default:
-                    List<DetailsDataset> detailsDataset=(List<DetailsDataset>)responce;
-                    searchview.setAdapter(new SearchRecyclerViewAdapter(detailsDataset));
+                    loadSearchList(responce);
             break;
         }
 

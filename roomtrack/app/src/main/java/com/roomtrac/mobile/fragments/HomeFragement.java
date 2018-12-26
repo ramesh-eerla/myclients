@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.roomtrac.mobile.R;
 import com.roomtrac.mobile.activites.PostPropertyActivity;
 import com.roomtrac.mobile.activites.SearchActivity;
+import com.roomtrac.mobile.utils.CommonUtils;
 import com.roomtrac.mobile.utils.Constants;
 
 /**
@@ -50,6 +51,8 @@ public class HomeFragement extends Fragment implements View.OnClickListener {
         postyourproperty.setOnClickListener(this);
         return v;
     }
+
+
     @Override
     public void onClick(View v) {
         int view_id = v.getId();
@@ -77,6 +80,7 @@ public class HomeFragement extends Fragment implements View.OnClickListener {
             mContext.startActivity(new Intent(mContext, PostPropertyActivity.class));
 
         } else {
+            CommonUtils.applyfilter=false;
             mContext.startActivity(new Intent(mContext, SearchActivity.class).putExtra(Constants.RT_SEACH_TYPE, catageri));
         }
 

@@ -118,7 +118,7 @@ public class ApprovalFontCommons {
 		String sp=null;
 		switch (type){
 			case Constants.FIRST_ITEM:
-				sp="<font color=#8e8c8c>" + data + "  </font><font color =#1e1e1e>&nbsp;&nbsp;" +data2 + "</u></font>";
+				sp="<font color=#8e8c8c>&nbsp;&nbsp;&nbsp;&nbsp;" + data + "  </font><br/><font color =#1e1e1e>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +data2 + "</font>";
 				break;
 			case Constants.TWO_ITEMS:
 				sp="<font color=#8e8c8c>" +data + "  </font><font color =#1e1e1e>&nbsp;&nbsp;" +data2 + "</u></font><br/><font color=#8e8c8c>" + data3 + " </font>";

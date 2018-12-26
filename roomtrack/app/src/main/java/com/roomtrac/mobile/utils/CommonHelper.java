@@ -19,13 +19,18 @@ import android.widget.Toast;
 import com.roomtrac.mobile.R;
 import com.roomtrac.mobile.Uicomponents.CustomProgressDialog;
 import com.roomtrac.mobile.activites.LoginActivity;
+import com.roomtrac.mobile.connectioncalls.datasets.DetailsDataset;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -150,26 +155,20 @@ public class CommonHelper {
         return dialog;
     }
 
-    public static AlertDialog setForceUpdateAlertDiaolog(final Context context, String title, String message) {
+    public static AlertDialog setalertdialog_(final Context context, String title, String message) {
         /*AlertDialog alertDialog = new AlertDialog.Builder(context, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT).create();
         alertDialog.setCancelable(false);*/
         alertDialog = getAlertDialog(context, message);
+        alertDialog.setIcon(context.getResources().getDrawable(R.mipmap.ic_launcher));
+        alertDialog.setTitle(title);
         alertDialog.setCancelable(false);
         alertDialog.setMessage(message);
 //        alertDialog.setCanceledOnTouchOutside(false);
 
         alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                try {
-                    Intent viewIntent =
-                            new Intent("android.intent.action.VIEW",
-                                    Uri.parse("https://play.google.com/store/apps/details?id=com.roomtrac.mobile"));
-                    context.startActivity(viewIntent);
-                } catch (Exception e) {
-                    Toast.makeText(context, "Unable to Connect Try Again...",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
+                alertDialog.cancel();
+                ((Activity)context).finish();
             }
         });
 
@@ -291,6 +290,21 @@ public class CommonHelper {
         return alertDialog;
     }
 
+    public static String convertStringtoDate(String data){
+        SimpleDateFormat formatter6=new SimpleDateFormat("yyyy-MM-yyyy");
+       /* DateFormat formatter=new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+        Date date=formatter.parse(dateTime);
+        formatte.applyPattern("dd/MM/yyyy");
+        String dateStr = formatter.format(date);*/
+        Date date= null;
+        try {
+            date = formatter6.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "";
+        }
+        return ""+date;
+    }
     /**
      * This is to set error alert dialog with out ic_launcher for corresponding context
      *
@@ -1128,6 +1142,20 @@ public class CommonHelper {
         }
         return alertDialog;
     }
+    public static ArrayList<String> populateList(DetailsDataset dataset) {
 
+        ArrayList<String> list = new ArrayList<>();
+        String[] urls=new String[]{};
+        String url =dataset.getUser_uploaded();
+        if(url.contains(",")){
+            urls=url.split(",");
+        for (String url_ : urls)
+            list.add("http://qaroomtrac.wizardtechnologiesprivatelimited.com/profile_uploads/uploads/"+url_);
+        }else{
+            list.add("http://qaroomtrac.wizardtechnologiesprivatelimited.com/profile_uploads/uploads/"+url);
+        }
+
+        return list;
+    }
     }
 

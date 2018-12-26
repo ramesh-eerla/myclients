@@ -54,11 +54,11 @@
             android:layout_height="@dimen/dim_40"
             app:dsb_trackHeight="@dimen/dim_6"
             app:dsb_thumbSize="@dimen/dim_10"
-            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorColor="@color/buttons"
             app:dsb_indicatorPopupEnabled="true"
             android:id="@+id/seekbar_area"
             app:dsb_min="500"
-            app:dsb_max="100000"
+            app:dsb_max="50000"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="right"
-                android:text="100000"
+                android:text="50000"
                 android:textColor="@color/colorDark"
                 android:textSize="@dimen/list_item_sl_fontsize" />
 
@@ -116,7 +116,7 @@
             app:dsb_trackHeight="@dimen/dim_6"
             app:dsb_thumbSize="@dimen/dim_10"
             android:id="@+id/rentseekbar"
-            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorColor="@color/buttons"
             app:dsb_indicatorPopupEnabled="true"
             app:dsb_min="2000"
             app:dsb_max="300000"
@@ -181,12 +181,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/male_chekbox"
                 android:buttonTint="@color/buttons"
                 android:text="Male"/>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/female_chekbox"
                 android:buttonTint="@color/buttons"
                 android:text="Female"/>
 
@@ -213,10 +215,10 @@
             app:dsb_trackHeight="@dimen/dim_6"
             app:dsb_thumbSize="@dimen/dim_10"
             android:id="@+id/ageseekbar"
-            app:dsb_indicatorColor="@color/colorAccent"
+            app:dsb_indicatorColor="@color/buttons"
             app:dsb_indicatorPopupEnabled="true"
             app:dsb_min="18"
-            app:dsb_max="100"
+            app:dsb_max="80"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -247,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:gravity="right"
-                android:text="100"
+                android:text=" 80"
                 android:textColor="@color/colorDark"
                 android:textSize="@dimen/list_item_sl_fontsize" />
 
@@ -277,12 +279,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/veg_chekbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/veg"/>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/non_veg_chekbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/nonveg"/>
 
@@ -314,12 +318,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/non_ac_checkbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/nonac"/>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/ac_checkbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/ac"/>
 
@@ -351,12 +357,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/furnsihed_checkbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/furnished"></CheckBox>
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/semi_furnished_checkbox"
                 android:buttonTint="@color/buttons"
                 android:text="@string/semifurnished"/>
 
@@ -371,6 +379,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/buttons"
+                android:id="@+id/un_furnished_checkbox"
                 android:text="@string/unfurnished"></CheckBox>
 
 

@@ -18,11 +18,30 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
-            <ImageView
-                android:layout_width="@dimen/dim_95"
-                android:layout_height="@dimen/dim_35"
+
+            <RelativeLayout
+                android:layout_width="@dimen/dim_125"
+                android:layout_height="@dimen/dim_40"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_logo_white"/>
+                >
+                <ImageView
+                    android:layout_width="@dimen/dim_95"
+                    android:layout_height="@dimen/dim_35"
+                    android:background="@drawable/ic_logo_white"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/search_area"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dim_2"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:text=""
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

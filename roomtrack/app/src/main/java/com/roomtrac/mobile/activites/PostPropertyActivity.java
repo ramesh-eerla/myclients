@@ -28,7 +28,7 @@ public class PostPropertyActivity extends AppCompatActivity
     private ViewPager viewPager;
     private AppCompatTextView mTitle;
     private ViewPagerAdapter adapter;
-    private String[] tabtitle={"Room","Home/Appartment","Roommate","Paying Guest","Hostel"};
+    private String[] tabtitle={"Room","Home/Apartment","Roommate","Paying Guest","Hostel"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,13 +1,20 @@
 package com.roomtrac.mobile.activites;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 
 import android.app.Activity;
 
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,6 +52,7 @@ import com.roomtrac.mobile.controller.AppController;
 import com.roomtrac.mobile.interfaces.ResponceCallback;
 import com.roomtrac.mobile.services.RequestParams;
 import com.roomtrac.mobile.utils.CommonHelper;
+import com.roomtrac.mobile.utils.CommonUtils;
 import com.roomtrac.mobile.utils.Constants;
 
 
@@ -52,6 +60,8 @@ import org.json.JSONObject;
 
 import retrofit2.Call;
 
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_CONTACTS;
 import static com.roomtrac.mobile.controller.AppController.TAG;
 
 /**
@@ -74,7 +84,7 @@ public class LoginActivity extends Activity implements ResponceCallback {
     CallbackManager callbackManager;
     // UI references.
     private EditText mEmailView,mPasswordView;
-    private TextView register;
+    private TextView register,forgotpwd;
     private ProgressDialog mProgressView;
     private View mLoginFormView;
     private CommonHelper mCommonHelper;
@@ -82,6 +92,19 @@ public class LoginActivity extends Activity implements ResponceCallback {
     private GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN=111;
     private RT_RetrofitSevicecall mRt_retrofitSevicecall;
+    int PERMISSION_ALL = 1;
+    String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.GET_ACCOUNTS,Manifest.permission.READ_CONTACTS};
+
+    public static boolean hasPermissions(Context mContext, String... permissions) {
+        if (mContext != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(mContext, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +113,9 @@ public class LoginActivity extends Activity implements ResponceCallback {
         setContentView(R.layout.activity_login);
         mContext=this;
         callbackManager = CallbackManager.Factory.create();
+        if (!hasPermissions(this, PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
+        }
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(Constants.GmailOauthid)
@@ -110,6 +136,8 @@ if(isLoggedIn){
         mEmailView.setText("saladisrinivas88@zoho.com");
         mPasswordView.setText("123456");
         register=(findViewById(R.id.register));
+        forgotpwd=findViewById(R.id.forgotpwd);
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -134,10 +162,18 @@ if(isLoggedIn){
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+        forgotpwd.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonUtils.forget_anv=Constants.RT_FORGETPWD;
+                startActivity(new Intent(LoginActivity.this, Forgetpassword.class));
+            }
+        });
 
        // mLoginFormView = findViewById(R.id.login_form);
 
     }
+
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the

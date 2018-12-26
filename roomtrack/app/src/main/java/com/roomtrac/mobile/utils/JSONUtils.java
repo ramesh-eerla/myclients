@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.internal.LinkedTreeMap;
+import com.roomtrac.mobile.connectioncalls.datasets.DetailsDataset;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -318,44 +321,84 @@ public class JSONUtils {
 	/**
      * To get JSONArray from the given JSON string using the given key
      * @param JSON_str is the JSON string which is used to get JSONArray using the key
-     * @param key is the value which is used to get JSONArray from a JSON string
      * @return returns JSONArray if no exception occurred else returns null
      * @author Launchship_Ravichandra 
      */
 	@SuppressLint("LongLogTag")
-	public static JSONArray getJSONArray(String JSON_str, String key)
+	public static List<DetailsDataset> getSearchdata(List<LinkedTreeMap> JSON_str)
 	{
-	//	Log.e("getJSONArray()","getJSONArray()");
+		ArrayList<DetailsDataset> datasets=new ArrayList<>();
 		 
 		JSONArray jsonArray=null;
-		
 		try {
-				JSONObject json=new JSONObject(JSON_str);
-				Log.d("jobj", ""+json);
-				Log.d("key", ""+key);
-				jsonArray=(JSONArray)json.get(key);
-				Log.d("jarray", ""+jsonArray);
-		       /* for(int i=0;i<jsonArray.length();i++)
-                {
-		        	JSONObject jsonObj=(JSONObject)jsonArray.get(i);
-		        	//Log.e("Name", jsonObj.get("Name").toString());
-                }*/
+			for(LinkedTreeMap map: JSON_str) {
+				DetailsDataset dataset=new DetailsDataset();
+				dataset.setMembers_detail_id(map.get("members_detail_id").toString());
+				dataset.setMember_id(map.get("member_id").toString());
+				dataset.setRent_id(map.get("rent_id").toString());
+				dataset.setHostel_id(map.get("hostel_id").toString());
+				dataset.setRoom_type_id(map.get("room_type_id").toString());
+				dataset.setFacility(map.get("facility").toString());
+				dataset.setFood_type(map.get("food_type").toString());
+				dataset.setFurnish_type(map.get("furnish_type").toString());;
+				dataset.setArea_sqft(map.get("area_sqft").toString());
+				dataset.setHome_appt_nature_id(map.get("home_appt_nature_id").toString());
+				dataset.setTag_line(map.get("tag_line").toString());
+				dataset.setRent_per_month(map.get("rent_per_month").toString());
+				dataset.setHome_appt_type_id(map.get("home_appt_type_id").toString());
+				dataset.setHome_appt_preferences_id(map.get("home_appt_preferences_id").toString());
+				dataset.setHostel_type_id(map.get("hostel_type_id").toString());
+				dataset.setHostel_nature_id(map.get("hostel_nature_id").toString());
+				dataset.setMembers_per_room(map.get("members_per_room").toString());
+				dataset.setVacency_for(map.get("vacency_for").toString());;
+				dataset.setSex(map.get("sex").toString());
+				dataset.setMin_age(map.get("min_age").toString());
+				dataset.setMax_age(map.get("max_age").toString());
+				dataset.setAvailibility_date(map.get("availibility_date").toString());
+				dataset.setAvailibility_month(map.get("availibility_month").toString());
+				dataset.setAvailibility_year(map.get("availibility_year").toString());
+				dataset.setCountry_id(map.get("country_id").toString());
+				dataset.setState_id(map.get("state_id").toString());
+				dataset.setCity_id(map.get("city_id").toString());
+				dataset.setLocation_id(map.get("location_id").toString());
+				dataset.setAbout_room(map.get("about_room").toString());;
+				dataset.setAbout_yourself(map.get("about_yourself").toString());
+				dataset.setHome_town(map.get("home_town").toString());
+
+				dataset.setPhone_number(map.get("phone_number").toString());
+				dataset.setUser_uploaded(map.get("user_uploaded").toString());
+				dataset.setLast_activity(map.get("last_activity").toString());
+				dataset.setStatus(map.get("status").toString());;
+				dataset.setFlag(map.get("flag").toString());
+				dataset.setPosted_on(map.get("posted_on").toString());
+				if(map.keySet().contains("memberid"))
+				dataset.setMemberid(map.get("memberid").toString());
+				dataset.setLocation_name(map.get("location_name").toString());
+				dataset.setCity_name(map.get("city_name").toString());
+				dataset.setState_name(map.get("state_name").toString());
+				if(map.keySet().contains("memberid"))
+				dataset.setCountry_name(map.get("country_name").toString());
+              	dataset.setFirst_name(map.get("first_name").toString());
+				dataset.setLast_name(map.get("last_name").toString());
+				dataset.setEmail(map.get("email").toString());
+
+                if(CommonUtils.applyfilter) {
+                    if (!validateFileterData(dataset))
+                        datasets.add(dataset);
+
+                }else{datasets.add(dataset);}
+			}
+
 			
 		} 
 		catch (ClassCastException e) {
 			    Log.e("***ClassCastException getJSONArray()", e.getMessage());
 			//e.printStackTrace();
 		}
-		catch (JSONException e) {
+		catch (Exception e) {
 			Log.e("***JSONException getJSONArray()", e.getMessage());
 	    }
-		catch (NullPointerException e) {
-				Log.e("***NullPointerException getJSONArray()", "" + e.getMessage());
-			}
-		catch (Exception e) {
-                Log.e("***Exception getJSONArray()", e.getMessage());
-			//e.printStackTrace();
-		}
+
 	
  
 		finally
@@ -364,9 +407,120 @@ public class JSONUtils {
 			   jsonArray = new JSONArray();
 		}
 		
-       return jsonArray;
+       return datasets;
 	}
-	/**
+
+	@SuppressLint("LongLogTag")
+	public static List<DetailsDataset> getBookmarkData(List<LinkedTreeMap> JSON_str)
+	{
+		ArrayList<DetailsDataset> datasets=new ArrayList<>();
+
+		JSONArray jsonArray=null;
+		try {
+			for(LinkedTreeMap map: JSON_str) {
+				DetailsDataset dataset=new DetailsDataset();
+
+
+				dataset.setMember_id(map.get("member_id").toString());
+				dataset.setRent_id(map.get("old_rent_id").toString());
+				dataset.setFirst_name(map.get("first_name").toString());
+				dataset.setLast_name(map.get("last_name").toString());
+				dataset.setEmail(map.get("email").toString());
+				dataset.setHome_town(map.get("home_town").toString());
+				dataset.setPhone_number(map.get("phone_no").toString());
+				dataset.setSex(map.get("sex").toString());
+				dataset.setMin_age(map.get("age").toString());
+				dataset.setAvailibility_date(map.get("dob_date").toString());
+				dataset.setAvailibility_month(map.get("dob_month").toString());
+				dataset.setAvailibility_year(map.get("dob_year").toString());
+				dataset.setCountry_name(map.get("spoken_language").toString());
+				dataset.setUser_uploaded(map.get("avatar").toString());
+				dataset.setAbout_yourself(map.get("password").toString());
+				dataset.setHostel_id(map.get("old_hostel_id").toString());
+				dataset.setRoom_type_id(map.get("old_stay_id").toString());
+				dataset.setFlag(map.get("flag").toString());
+				dataset.setLast_activity(map.get("last_login").toString());
+				dataset.setStatus(map.get("status").toString());
+				dataset.setFacility(map.get("activate").toString());
+				dataset.setFood_type(map.get("registration_expire").toString());
+				dataset.setPosted_on(map.get("posted_on").toString());
+				dataset.setArea_sqft(map.get("registered_on").toString());
+				dataset.setLocation_name(map.get("address").toString());
+
+						datasets.add(dataset);
+
+
+			}
+
+
+		}
+		catch (ClassCastException e) {
+			Log.e("***ClassCastException getJSONArray()", e.getMessage());
+			//e.printStackTrace();
+		}
+		catch (Exception e) {
+			Log.e("***JSONException getJSONArray()", e.getMessage());
+		}
+
+
+
+		finally
+		{
+			if(jsonArray==null)
+				jsonArray = new JSONArray();
+		}
+
+		return datasets;
+	}
+
+    private static boolean validateFileterData(DetailsDataset dataset) {
+	    boolean status=false;
+	    if(CommonUtils.filter_rent!=2000)
+	    status=CommonUtils.filter_rent<= Integer.parseInt(dataset.getRent_per_month())? true:false;
+        if(CommonUtils.filter_area!=500)
+	    status=CommonUtils.filter_area<= Integer.parseInt(dataset.getArea_sqft())? true:status;
+        if(CommonUtils.filter_age!=18)
+        status=CommonUtils.filter_age<= Integer.parseInt(dataset.getMax_age())? true:status;
+		if(CommonUtils.ac_status&&CommonUtils.non_acstatus)
+			status=status;
+        else if(CommonUtils.ac_status&&!CommonUtils.non_acstatus)
+        status=dataset.getFacility().equalsIgnoreCase("A/C")?status:true;
+        else if(CommonUtils.non_acstatus)
+        status=dataset.getFacility().equalsIgnoreCase("Non A/C")?status:true;
+
+        if(CommonUtils.male_status&&CommonUtils.female_status)
+			status=status;
+        else if(CommonUtils.male_status&&!CommonUtils.female_status)
+            status=dataset.getSex().equalsIgnoreCase("Male")?status:true;
+        if(CommonUtils.female_status)
+            status=dataset.getSex().equalsIgnoreCase("Female")?status:true;
+
+		if(CommonUtils.veg_status&&CommonUtils.non_veg_status)
+			status=status;
+        if(CommonUtils.veg_status&&!CommonUtils.non_veg_status)
+            status=dataset.getFood_type().equalsIgnoreCase("Veg")?status:true;
+        if(CommonUtils.non_veg_status)
+            status=dataset.getFood_type().equalsIgnoreCase("Non Veg")?status:true;
+        if(CommonUtils.furnished_status&&CommonUtils.semi_furnished_status&&CommonUtils.un_furnished_status)
+        	status=status;
+        else if(CommonUtils.furnished_status&&!CommonUtils.semi_furnished_status&&!CommonUtils.un_furnished_status)
+            status=dataset.getFurnish_type().equalsIgnoreCase("Furnished")?status:true;
+        if(!CommonUtils.furnished_status&&CommonUtils.semi_furnished_status&&!CommonUtils.un_furnished_status)
+            status=dataset.getFurnish_type().equalsIgnoreCase("Semi Furnished")?status:true;
+        if(!CommonUtils.furnished_status&&!CommonUtils.semi_furnished_status&&CommonUtils.un_furnished_status)
+            status=dataset.getFurnish_type().equalsIgnoreCase("Un Furnished")?status:true;
+		else if(CommonUtils.furnished_status&&CommonUtils.semi_furnished_status&&!CommonUtils.un_furnished_status)
+			status=(dataset.getFurnish_type().equalsIgnoreCase("Furnished")||dataset.getFurnish_type().equalsIgnoreCase("Semi Furnished")) ?status:true;
+		if(!CommonUtils.furnished_status&&CommonUtils.semi_furnished_status&&CommonUtils.un_furnished_status)
+			status=dataset.getFurnish_type().equalsIgnoreCase("Semi Furnished")||dataset.getFurnish_type().equalsIgnoreCase("Un Furnished")?status:true;
+		if(CommonUtils.furnished_status&&!CommonUtils.semi_furnished_status&&CommonUtils.un_furnished_status)
+			status=dataset.getFurnish_type().equalsIgnoreCase("Furnished")||dataset.getFurnish_type().equalsIgnoreCase("Un Furnished")?status:true;
+
+        return status;
+
+    }
+
+    /**
 	 * To get Root element from the given JSON string
 	 * @param jsonString is the JSON string from which the root element has to be retrieved
 	 * @return returns root_element_name if no exception occurred else returns null

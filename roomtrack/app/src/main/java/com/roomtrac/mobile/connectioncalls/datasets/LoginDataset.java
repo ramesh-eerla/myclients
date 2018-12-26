@@ -3,6 +3,7 @@ package com.roomtrac.mobile.connectioncalls.datasets;
 /**
  * Created by Ramesh.eerla on 24/10/2018.
  */
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 

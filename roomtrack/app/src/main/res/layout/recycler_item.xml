@@ -29,7 +29,7 @@
             android:layout_height="@dimen/dim_120"
             android:layout_gravity="center_vertical"
             android:id="@+id/housepic"
-            android:background="@drawable/img_1"
+            android:background="@drawable/defaultproperty"
             />
 
 
@@ -66,6 +66,7 @@
 <ImageView
     android:layout_width="@dimen/dim_20"
     android:layout_height="@dimen/dim_30"
+    android:id="@+id/loc_image"
     android:src="@mipmap/ic_location"/>
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/address"

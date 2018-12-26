@@ -26,7 +26,11 @@
         android:layout_marginLeft="@dimen/dim_5"
         android:layout_alignParentBottom="true"
         android:background="@color/view_line_color"></View>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/change_pwd_layout"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -38,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/prompt_email"
             android:layout_weight="1"
+            android:padding="@dimen/dim_2"
             android:textSize="@dimen/font_cart"
             android:textColor="@android:color/white"
             android:id="@+id/email_lable"
@@ -47,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/font_cart"
+            android:padding="@dimen/dim_2"
             android:textColor="@android:color/white"
             android:id="@+id/email_value"
             />
@@ -56,12 +62,14 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_margin="@dimen/dim_3"
+
            android:background="@drawable/shape_edittext"
             android:layout_height="@dimen/dim_45">
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/oldpwd"
+                android:padding="@dimen/dim_2"
                 android:textColor="@android:color/white"
                 android:id="@+id/old_pwd_lable"
                 android:textSize="@dimen/font_cart"
@@ -70,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_cart"
+                android:padding="@dimen/dim_2"
                 android:background="@android:color/transparent"
                 android:textColor="@android:color/white"
                 android:id="@+id/oldpwd_value"
@@ -80,12 +89,14 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_margin="@dimen/dim_3"
+
         android:background="@drawable/shape_edittext"
         android:layout_height="@dimen/dim_45">
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/newpwd"
+            android:padding="@dimen/dim_2"
             android:textColor="@android:color/white"
             android:id="@+id/new_pwd_lable"
             android:textSize="@dimen/font_cart"
@@ -94,6 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_cart"
+            android:padding="@dimen/dim_2"
             android:background="@android:color/transparent"
             android:textColor="@android:color/white"
             android:id="@+id/newpwed_value"
@@ -104,6 +116,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_margin="@dimen/dim_3"
+
         android:background="@drawable/shape_edittext"
         android:layout_height="@dimen/dim_45">
         <android.support.v7.widget.AppCompatTextView
@@ -111,6 +124,7 @@
             android:layout_height="wrap_content"
             android:text="@string/confpwd"
             android:id="@+id/cnf_pwd_lable"
+            android:padding="@dimen/dim_2"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_cart"
             />
@@ -118,6 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_cart"
+            android:padding="@dimen/dim_2"
             android:background="@android:color/transparent"
             android:textColor="@android:color/white"
             android:id="@+id/confirmpwd_value"
@@ -139,4 +154,13 @@
         android:textStyle="bold"
         android:textSize="@dimen/screen_title"
         android:text="Save Changes"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/view_profile_layout"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
     </LinearLayout>

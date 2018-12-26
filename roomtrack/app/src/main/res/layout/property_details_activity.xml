@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <RelativeLayout
+                android:layout_width="@dimen/dim_125"
+                android:layout_height="@dimen/dim_40"
+                android:layout_gravity="center"
+                >
+                <ImageView
+                    android:layout_width="@dimen/dim_95"
+                    android:layout_height="@dimen/dim_35"
+                    android:background="@drawable/ic_logo_white"/>
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/search_area"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dim_2"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:visibility="gone"
+                    android:text="you are "
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dim_10"
+                android:id="@+id/filter"
+                android:visibility="gone"
+                android:layout_gravity="center|right|end"
+                android:src="@mipmap/todo_list"/>
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/imageCirclepageviews"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+<android.support.v7.widget.AppCompatButton
+    android:layout_width="@dimen/dim_70"
+    android:layout_height="@dimen/dim_30"
+    android:layout_marginTop="@dimen/dim_3"
+    android:layout_marginRight="@dimen/dim_3"
+    android:id="@+id/book_mark_button"
+    android:layout_alignParentRight="true"
+    android:onClick="updatebookmark"
+    android:fontFamily="@font/roboto"
+    android:textSize="@dimen/sp10"
+    android:background="@color/loginbuttoncolor"
+    android:textColor="@android:color/white"
+    android:text="Bookmark"/>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pagerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:padding="10dip"
+            app:centered="true"
+            app:fillColor="#df0623"
+            app:pageColor="#fff"
+            app:snap="false" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageCirclepageviews"
+        android:layout_marginTop="5dp">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_30"
+            android:background="#FDC80E"
+            android:minHeight="?attr/actionBarSize"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@android:color/background_dark"
+            app:tabTextColor="#FFF" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tabs" />
+
+
+    </RelativeLayout>
+</LinearLayout>
